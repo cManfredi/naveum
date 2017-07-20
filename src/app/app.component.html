@@ -1,4 +1,11 @@
-<app-main>
-  
-</app-main>
-
+<md-sidenav-container #sidenav>
+    <md-sidenav mode="over">
+      <md-list>
+      </md-list>
+    </md-sidenav>  
+    <div class="app-container">
+        <app-header [sidenav]=sidenav></app-header>
+        <app-main></app-main>
+        <app-footer></app-footer>
+    </div>
+</md-sidenav-container>
