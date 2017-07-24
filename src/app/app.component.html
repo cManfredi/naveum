@@ -1,11 +1,14 @@
 <md-sidenav-container #sidenav>
-    <md-sidenav mode="over">
-      <md-list>
-      </md-list>
-    </md-sidenav>  
-    <div class="app-container">
-        <app-header [sidenav]=sidenav></app-header>
-        <app-main></app-main>
-        <app-footer></app-footer>
-    </div>
+  <md-sidenav mode="over" id="sidenav-menu">
+    <div class="sidenav-img"></div>
+    <md-nav-list>
+      <a md-list-item routerLink="" routerLinkActive=true>Home Page</a>
+    </md-nav-list>
+  </md-sidenav>
+  <div class="app-container">
+    <app-header [sidenav]=sidenav></app-header>
+    <!-- Router outlet -->
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </div>
 </md-sidenav-container>
