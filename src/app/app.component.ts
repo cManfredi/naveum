@@ -1,3 +1,5 @@
+import { ShareDataService } from './services/share-data.service';
+import { MdSidenavModule } from '@angular/material';
 import { Component } from '@angular/core';
 
 @Component({
@@ -5,4 +7,11 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {}
+export class AppComponent {
+
+  constructor(private shareData: ShareDataService) {}
+
+  addLink(link: string) {
+  }
+
+}

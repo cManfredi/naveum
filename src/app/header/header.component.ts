@@ -1,5 +1,5 @@
 import { MdSidenavModule } from '@angular/material';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Input() sidenav;
+  @Output() btnClicked: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
 
@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openSidenav() {
-    this.sidenav.open();
+    this.btnClicked.emit('toggleSidenav');
   }
 
 }

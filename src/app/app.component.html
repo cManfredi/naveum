@@ -6,9 +6,9 @@
     </md-nav-list>
   </md-sidenav>
   <div class="app-container">
-    <app-header [sidenav]=sidenav></app-header>
+    <app-header (btnClicked)="sidenav.open()"></app-header>
     <!-- Router outlet -->
-    <main class="main-container">
+    <main class="main-container" (beaconFound)="addLink($event)">
       <router-outlet></router-outlet>
     </main>
     <app-footer></app-footer>
