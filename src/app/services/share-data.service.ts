@@ -4,13 +4,13 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ShareDataService {
-  private emittingSource = new Subject<any>();
-  private stream = this.emittingSource.asObservable();
+  private beaconLoadSource = new Subject<any>();
+  beaconLoad$ = this.beaconLoadSource.asObservable();
 
   constructor() { }
 
-  emitChange(change: any) {
-    this.emittingSource.next(change);
+  emitBeaconData(data: Object[]) {
+    this.beaconLoadSource.next(data);
   }
 
 }

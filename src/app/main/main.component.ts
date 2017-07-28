@@ -11,25 +11,28 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class MainComponent implements OnInit {
 
   constructor(
-    private router: Router, private jsonFetch: JsonFetchService, private shareData: ShareDataService
+    private router: Router, private jsonFetch: JsonFetchService, private _sharedService: ShareDataService
   ) { }
 
   ngOnInit() {
   }
 
   loadBeaconData(url: string) {
-    url = 'https://api.myjson.com/bins/jxdnx';
-    const data = this.jsonFetch.getJsonData(url);
-    console.log(data);
-    /* Switch sulle info recuperate nell'url */
-    switch (data.type) {
-      default:
-        break;
-    }
-    /* Emissione dei nuovi dati per popolare il sidenav */
-    this.shareData.emitChange('');
-    /* Navigazione alla pagina di competenza */
-    // this.router.navigate(['/exhibition']);
+    url = 'http://localhost:3000/exhibition';
+    let data;
+    this.jsonFetch.getJsonData(url)
+    .subscribe(
+      res => data = res,
+      err => console.error,
+      () => {
+        this._sharedService.emitBeaconData(data);
+        switch (data.type) {
+          case 'exhibition':
+            this.router.navigate(['exhibition']);
+            break;
+        }
+      }
+    );
   }
 
 }

@@ -1,3 +1,4 @@
+import { ShareDataService } from './services/share-data.service';
 /* Moduli */
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -22,7 +23,7 @@ import { JsonFetchService } from './services/json-fetch.service';
    ne verranno aggiunte altre alla configurazione del router */
 const appRoutes: Routes = [
   { path: '', component: MainComponent},
-  { path: '/exhibition', component: InfoExhibitionComponent },
+  { path: 'exhibition', component: InfoExhibitionComponent },
   { path: '**', component: PageNotFoundComponent}
 ];
 
@@ -46,7 +47,7 @@ const appRoutes: Routes = [
     MdIconModule,
     MdListModule
   ],
-  providers: [JsonFetchService],
+  providers: [JsonFetchService, ShareDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
