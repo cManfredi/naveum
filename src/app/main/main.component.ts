@@ -26,11 +26,7 @@ export class MainComponent implements OnInit {
       err => console.error,
       () => {
         this._sharedService.emitBeaconData(data);
-        switch (data.type) {
-          case 'exhibition':
-            this.router.navigate(['exhibition']);
-            break;
-        }
+        this.router.navigate([data.type]);
       }
     );
   }

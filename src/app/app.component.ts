@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   private linkList: Object[];
+  private scannedBeacons: Array<string>;
 
   constructor(private _sharedService: ShareDataService) {}
 
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit {
     this.linkList = [
       {link: '', label: 'Home Page'}
     ];
+    this.scannedBeacons = [];
     /* Sottoscrizione agli eventi che arrivano dal servizio condiviso */
     this._sharedService.beaconLoad$.subscribe(bData => this.updateSidenav(bData));
   }
@@ -27,18 +29,27 @@ export class AppComponent implements OnInit {
   }
 
   updateSidenav(bData) {
-    console.log(bData);
+    const newLink = {link: bData.type, label: bData.title};
+    const beaconId = bData.type + '_' + bData.title;
+    /* Per evitare i doppioni all'interno del menù di navigazione */
+    if (!this.scannedBeacons.includes(beaconId)) {
+      this.scannedBeacons.push(beaconId);
       switch (bData.type) {
         case 'exhibition':
-          this.addLink({
-            link: 'exhibition', label: bData.title
-          });
+            this.addLink({
+              link: 'exhibition', label: bData.title
+            });
           break;
         case 'room':
           break;
         case 'artwork':
           break;
       }
+    }
+  }
+
+  getLinkList(): any {
+    return this.linkList;
   }
 
 }
