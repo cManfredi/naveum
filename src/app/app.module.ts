@@ -1,4 +1,3 @@
-import { ShareDataService } from './services/share-data.service';
 /* Moduli */
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -19,6 +18,8 @@ import { InfoMuseumComponent } from './info-museum/info-museum.component';
 
 /* Servizi */
 import { JsonFetchService } from './services/json-fetch.service';
+import { ShareDataService } from './services/share-data.service';
+import { InfoArtworkComponent } from './info-artwork/info-artwork.component';
 
 /* Routes predefinite dell'applicazione, a mano a mano che si scoprono nuove pagine è possibile
    ne verranno aggiunte altre alla configurazione del router */
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     PageNotFoundComponent,
     InfoExhibitionComponent,
-    InfoMuseumComponent
+    InfoMuseumComponent,
+    InfoArtworkComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {enableTracing: true}),
