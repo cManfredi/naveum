@@ -2,7 +2,12 @@
   <md-sidenav mode="over" id="sidenav-menu">
     <div class="sidenav-img"></div>
     <md-nav-list>
-      <a md-list-item *ngFor="let link of linkList" [routerLink]="link.link" routerLinkActive=true>{{link.label}}</a>
+      <a md-list-item 
+        *ngFor="let link of linkList" 
+        [routerLink]="link.link" 
+        routerLinkActive=true (click)="sidenav.close()">
+          {{link.label}}
+      </a>
     </md-nav-list>
   </md-sidenav>
   <div class="app-container">
