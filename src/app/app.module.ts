@@ -20,6 +20,7 @@ import { InfoMuseumComponent } from './info-museum/info-museum.component';
 import { JsonFetchService } from './services/json-fetch.service';
 import { ShareDataService } from './services/share-data.service';
 import { InfoArtworkComponent } from './info-artwork/info-artwork.component';
+import { InfoRoomComponent } from './info-room/info-room.component';
 
 /* Routes predefinite dell'applicazione, a mano a mano che si scoprono nuove pagine è possibile
    ne verranno aggiunte altre alla configurazione del router */
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     InfoExhibitionComponent,
     InfoMuseumComponent,
-    InfoArtworkComponent
+    InfoArtworkComponent,
+    InfoRoomComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {enableTracing: true}),
