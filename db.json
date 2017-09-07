@@ -40,15 +40,15 @@
   	"containerStyle": ""
   },
 
-    "artwork2":
+  "artwork2":
   {
     "type": "artwork",
 	  "position": 2,
 	  "room-id": 1,
 	  "title": "La Gioconda" ,
 	  "description": "La Gioconda, nota anche come Monna Lisa, è un dipinto a olio su tavola di legno (pioppo) realizzato da Leonardo da Vinci. Di dimensioni 77x53 cm, è databile al 1503-1506 circa. Opera iconica ed enigmatica, si tratta sicuramente del ritratto più celebre della storia nonché di una delle opere d'arte più note in assoluto. Il sorriso impercettibile del soggetto, col suo alone di mistero, ha ispirato tantissime pagine di critica, letteratura, opere di immaginazione e persino studi psicoanalitici; sfuggente, ironica e sensuale, la Monna Lisa è stata di volta in volta amata e idolatrata ma anche derisa o aggredita. L'opera rappresenta tradizionalmente Lisa Gherardini, cioè 'Monna' Lisa (un diminutivo di 'Madonna' derivante dalla parola latina 'Mea domina' che oggi avrebbe lo stesso significato di 'Signora'), moglie di Francesco del Giocondo (quindi la 'Gioconda'). Il ritratto mostra una donna seduta a mezza figura, girata a sinistra, ma con il volto pressoché frontale, ruotato verso lo spettatore. Le mani sono dolcemente adagiate in primo piano, mentre sullo sfondo, oltre una sorta di parapetto, si apre un vasto paesaggio fluviale, con il consueto repertorio leonardesco di picchi rocciosi e speroni. Indossa una pesante veste scollata, secondo la moda dell'epoca, con un ricamo lungo il petto e maniche in tessuto diverso; in testa indossa un velo trasparente che tiene fermi i lunghi capelli sciolti, ricadendo poi sulla spalla dove si trova appoggiato anche un leggero drappo a mo' di sciarpa. Il quadro di Leonardo fu uno dei primi ritratti a rappresentare il soggetto davanti a un panorama ritenuto, dai più, immaginario. Una caratteristica interessante del panorama è che non è uniforme. La parte di sinistra è evidentemente posta più in basso rispetto a quella destra. Questo fatto ha portato alcuni critici a ritenere che sia stata aggiunta successivamente. La Gioconda si trova in una specie di loggia panoramica, come dimostrano le basi di due colonne laterali sul parapetto; una copia seicentesca mostrerebbe la composizione originaria in cui è visibile la parte architettonica successivamente mutilata.", 
-    "img-url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg", 
-  	"audio-url": "https://drive.google.com/uc?export=download&id=0Bxi9RcatdkxYNVdkZG42QU5MdUE" ,
+    "imgUrl": "http://www.progettoeditoriale.com/pee/wp-content/uploads/2015/10/Monna-Lisa.jpg", 
+  	"audioUrl": "https://drive.google.com/uc?export=download&id=0Bxi9RcatdkxYNVdkZG42QU5MdUE" ,
 	  "containerStyle": ""
   },
 
