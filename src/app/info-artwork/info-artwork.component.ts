@@ -24,7 +24,6 @@ export class InfoArtworkComponent implements OnInit {
       this.description = initData.description;
       this.audioUrl = initData.audioUrl;
     }
-    console.log(this.imgUrl);
   }
 
   updatePage(bData) {
@@ -44,7 +43,7 @@ export class InfoArtworkComponent implements OnInit {
     return this.imgUrl;
   }
 
-  getaudioUrl() {
+  getAudioUrl() {
     return this.audioUrl;
   }
 

@@ -1,5 +1,11 @@
 <div class="container">
   <h1 class="mat-h1">{{getTitle()}}</h1>
   <img class="coverImg" [src]=getImgUrl() />
-  <p class="text" >{{getdescription()}}</p>
+  <audio controls>
+    <source [src]=getAudioUrl() type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+  <div class="description">
+    <p class="text" >{{getdescription()}}</p>
+  </div>
 </div>
