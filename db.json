@@ -24,6 +24,16 @@
 	  "containerStyle": "" 
   },
 
+  "room":
+  {
+    "type": "room",
+    "id": 1,
+    "title": "",
+    "description": "",
+    "imgUrl": "",
+    "containerStyle": ""
+  },
+
   "artwork":
   {
     "type": "artwork",
