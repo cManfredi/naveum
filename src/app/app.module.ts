@@ -15,19 +15,20 @@ import { HeaderComponent } from './header/header.component';
 import { PageNotFoundComponent } from './pageNotFound.component';
 import { InfoExhibitionComponent } from './info-exhibition/info-exhibition.component';
 import { InfoMuseumComponent } from './info-museum/info-museum.component';
+import { InfoArtworkComponent } from './info-artwork/info-artwork.component';
+import { InfoRoomComponent } from './info-room/info-room.component';
 
 /* Servizi */
 import { JsonFetchService } from './services/json-fetch.service';
 import { ShareDataService } from './services/share-data.service';
-import { InfoArtworkComponent } from './info-artwork/info-artwork.component';
-import { InfoRoomComponent } from './info-room/info-room.component';
 
 /* Routes predefinite dell'applicazione, a mano a mano che si scoprono nuove pagine è possibile
    ne verranno aggiunte altre alla configurazione del router */
 const appRoutes: Routes = [
   { path: '', component: MainComponent},
   { path: 'exhibition', component: InfoExhibitionComponent },
-  { path: 'museum', component: InfoMuseumComponent},
+  { path: 'museum', component: InfoMuseumComponent },
+  { path: 'artwork', component: InfoArtworkComponent },
   { path: '**', component: PageNotFoundComponent}
 ];
 

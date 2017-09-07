@@ -43,6 +43,9 @@ export class AppComponent implements OnInit {
         case 'room':
           break;
         case 'artwork':
+            this.addLink({
+              link: 'artwork', label: bData.title
+            })
           break;
       }
     }

@@ -18,7 +18,7 @@ export class MainComponent implements OnInit {
   }
 
   loadBeaconData(url: string) {
-    url = 'http://localhost:3000/exhibition';
+    url = 'http://localhost:3000/artwork';
     let data;
     this.jsonFetch.getJsonData(url)
     .subscribe(
