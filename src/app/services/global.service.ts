@@ -5,12 +5,14 @@ import * as classes from '../classes';
 export class GlobalService {
   public lang: string;
   public currentPage: string;
-  public currentBeacon: Object;
+  public currentBeacon: any;
 
   public rooms: Array<classes.Room>;
   public currentRoom: number;
 
-  constructor() { }
+  constructor() {
+    this.lang = 'en';
+  }
 
   /* Le due funzioni sono separate perchè è possibile aggiungere una stanza ma non cambiare pagina */
 

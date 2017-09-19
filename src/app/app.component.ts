@@ -1,10 +1,12 @@
 import { Router } from '@angular/router';
 import { JsonFetchService } from './services/json-fetch.service';
 import { ShareDataService } from './services/share-data.service';
-import { MdSidenavModule } from '@angular/material';
+import { MdSidenavModule, MdDialog } from '@angular/material';
 import { Component, OnInit, NgZone } from '@angular/core';
 import * as classes from './classes';
-import { GlobalService } from 'app/services/global.service';
+import { GlobalService } from './services/global.service';
+import { WindowRefService } from './services/window-ref.service'
+import { DialogComponent } from './dialog/dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -14,18 +16,22 @@ import { GlobalService } from 'app/services/global.service';
 export class AppComponent implements OnInit {
   private linkList: Object[];
   private scannedBeacons: Array<string>;
+  public inSession: boolean;
 
   constructor(
     private _sharedService: ShareDataService,
     private _globalService: GlobalService,
     private _ngZone: NgZone,
     private _jsonService: JsonFetchService,
-    private router: Router
+    private router: Router,
+    private windowRef: WindowRefService,
+    public dialog: MdDialog
   ) {}
 
   ngOnInit() {
-    /* Aggiungo la reference globale */
-    window.angularComponentRef = {
+    this.inSession = false;
+    /* Aggiungo la reference globale usando il servizio wrapper creato */
+    this.windowRef.window.angularComponentRef = {
       zone: this._ngZone,
       func: (url) => {this.loadUrl(url)},
       component: this
@@ -67,14 +73,27 @@ export class AppComponent implements OnInit {
       res => data = res,
       err => console.error,
       () => {
+        // Se inizia la sessione setto la variabile
+        this.inSession = true;
+        // Salvataggio dei dati del nuovo beacon (se è una stanza o un'opera)
         this.saveData(data);
+        // Mediante il servizio i dati del beacon vengono condivisi con gli altri componenti
         this._sharedService.emitBeaconData(data);
-        this.router.navigate([data.type]);
+        // this.router.navigate([data.type]);
+        /* apertura del dialog con le info del nuovo beacon */
+        const dialogRef = this.dialog.open(DialogComponent, {
+          data: data
+        });
+        // Gestione della chiusura del dialog con il risultato
+        dialogRef.afterClosed().subscribe(result => {
+          this.manageRouting(result);
+        })
       }
     );
   }
 
   saveData(data: any) {
+    this._globalService.currentBeacon = data;
     switch (data.type) {
       case 'room':
         const room: classes.Room = new classes.Room(data.id, data.title, data.description, data.imgUrl, data.containerStyle);
@@ -83,6 +102,16 @@ export class AppComponent implements OnInit {
       case 'artwork':
         break;
     }
+  }
+
+  private manageRouting(result: any) {
+    if (result === 'change') {
+      this.router.navigate([this._globalService.currentBeacon.type]);
+    }
+  }
+
+  closeSession() {
+    // TO-DO
   }
 
 }

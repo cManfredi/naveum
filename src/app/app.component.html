@@ -9,6 +9,11 @@
         (click)="sidenav.close()">
           {{link.label}}
       </a>
+      <a md-list-item 
+        *ngIf="inSession"
+        (click)="closeSession()">
+          Close session
+      </a>
     </md-nav-list>
   </md-sidenav>
   <div class="app-container">

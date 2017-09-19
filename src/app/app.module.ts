@@ -5,7 +5,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import 'hammerjs';
-import { MdSidenavModule, MdToolbarModule, MdButtonModule, MdIconModule, MdListModule } from '@angular/material';
+import {
+  MdSidenavModule,
+  MdToolbarModule,
+  MdButtonModule,
+  MdIconModule,
+  MdListModule,
+  MdDialogModule
+} from '@angular/material';
 
 /* Componenti */
 import { AppComponent } from './app.component';
@@ -17,11 +24,13 @@ import { InfoExhibitionComponent } from './info-exhibition/info-exhibition.compo
 import { InfoMuseumComponent } from './info-museum/info-museum.component';
 import { InfoArtworkComponent } from './info-artwork/info-artwork.component';
 import { InfoRoomComponent } from './info-room/info-room.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 /* Servizi */
 import { JsonFetchService } from './services/json-fetch.service';
 import { ShareDataService } from './services/share-data.service';
 import { GlobalService } from './services/global.service';
+import { WindowRefService } from './services/window-ref.service';
 
 /* Routes predefinite dell'applicazione, a mano a mano che si scoprono nuove pagine è possibile
    ne verranno aggiunte altre alla configurazione del router */
@@ -44,7 +53,8 @@ const appRoutes: Routes = [
     InfoExhibitionComponent,
     InfoMuseumComponent,
     InfoArtworkComponent,
-    InfoRoomComponent
+    InfoRoomComponent,
+    DialogComponent
   ],
   imports: [
     NgZone,
@@ -56,9 +66,15 @@ const appRoutes: Routes = [
     MdToolbarModule,
     MdButtonModule,
     MdIconModule,
-    MdListModule
+    MdListModule,
+    MdDialogModule
   ],
-  providers: [JsonFetchService, ShareDataService, GlobalService],
+  providers: [
+    JsonFetchService,
+    ShareDataService,
+    GlobalService,
+    WindowRefService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
