@@ -1,5 +1,5 @@
 /* Moduli */
-import { NgModule } from '@angular/core';
+import { NgModule, NgZone } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +21,7 @@ import { InfoRoomComponent } from './info-room/info-room.component';
 /* Servizi */
 import { JsonFetchService } from './services/json-fetch.service';
 import { ShareDataService } from './services/share-data.service';
+import { GlobalService } from './services/global.service';
 
 /* Routes predefinite dell'applicazione, a mano a mano che si scoprono nuove pagine è possibile
    ne verranno aggiunte altre alla configurazione del router */
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
   { path: '', component: MainComponent},
   { path: 'exhibition', component: InfoExhibitionComponent },
   { path: 'museum', component: InfoMuseumComponent },
+  { path: 'room', component: InfoRoomComponent},
   { path: 'artwork', component: InfoArtworkComponent },
   { path: '**', component: PageNotFoundComponent}
 ];
@@ -45,6 +47,7 @@ const appRoutes: Routes = [
     InfoRoomComponent
   ],
   imports: [
+    NgZone,
     RouterModule.forRoot(appRoutes, {enableTracing: true}),
     HttpModule,
     BrowserModule,
@@ -55,7 +58,7 @@ const appRoutes: Routes = [
     MdIconModule,
     MdListModule
   ],
-  providers: [JsonFetchService, ShareDataService],
+  providers: [JsonFetchService, ShareDataService, GlobalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,20 +1,35 @@
+import { Router } from '@angular/router';
+import { JsonFetchService } from './services/json-fetch.service';
 import { ShareDataService } from './services/share-data.service';
 import { MdSidenavModule } from '@angular/material';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
+import * as classes from './classes';
+import { GlobalService } from 'app/services/global.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  providers: [ShareDataService]
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   private linkList: Object[];
   private scannedBeacons: Array<string>;
 
-  constructor(private _sharedService: ShareDataService) {}
+  constructor(
+    private _sharedService: ShareDataService,
+    private _globalService: GlobalService,
+    private _ngZone: NgZone,
+    private _jsonService: JsonFetchService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    /* Aggiungo la reference globale */
+    window.angularComponentRef = {
+      zone: this._ngZone,
+      func: (url) => {this.loadUrl(url)},
+      component: this
+    };
     /* Aggiungo il path alla homepage */
     this.linkList = [
       {link: '', label: 'Home Page'}
@@ -34,25 +49,40 @@ export class AppComponent implements OnInit {
     /* Per evitare i doppioni all'interno del menù di navigazione */
     if (!this.scannedBeacons.includes(beaconId)) {
       this.scannedBeacons.push(beaconId);
-      switch (bData.type) {
-        case 'exhibition':
-            this.addLink({
-              link: 'exhibition', label: bData.title
-            });
-          break;
-        case 'room':
-          break;
-        case 'artwork':
-            this.addLink({
-              link: 'artwork', label: bData.title
-            })
-          break;
+      /* Non c'è uno switch, i link non dipendono dal tipo di contenuto, basta che non sia un'opera */
+      if (newLink.link !== 'artwork') {
+        this.addLink(newLink);
       }
     }
   }
 
   getLinkList(): any {
     return this.linkList;
+  }
+
+  loadUrl(url: string) {
+    let data;
+    this._jsonService.getJsonData(url)
+    .subscribe(
+      res => data = res,
+      err => console.error,
+      () => {
+        this.saveData(data);
+        this._sharedService.emitBeaconData(data);
+        this.router.navigate([data.type]);
+      }
+    );
+  }
+
+  saveData(data: any) {
+    switch (data.type) {
+      case 'room':
+        const room: classes.Room = new classes.Room(data.id, data.title, data.description, data.imgUrl, data.containerStyle);
+        this._globalService.addRoom(room);
+        break;
+      case 'artwork':
+        break;
+    }
   }
 
 }

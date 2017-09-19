@@ -1,5 +1,6 @@
 import { ShareDataService } from '../services/share-data.service';
 import { Component, OnInit } from '@angular/core';
+import { GlobalService } from 'app/services/global.service';
 
 @Component({
   selector: 'app-info-artwork',
@@ -12,7 +13,7 @@ export class InfoArtworkComponent implements OnInit {
   private description: string;
   private audioUrl: string;
 
-  constructor(private _sharedService: ShareDataService) {}
+  constructor(private _sharedService: ShareDataService, private _globalService: GlobalService) {}
 
   ngOnInit() {
   /* Sottoscrizione agli eventi che arrivano dal servizio condiviso */
