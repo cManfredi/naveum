@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     private _globalService: GlobalService,
     private _ngZone: NgZone,
     private _jsonService: JsonFetchService,
-    private router: Router,
+    private _router: Router,
     private windowRef: WindowRefService,
     public dialog: MdDialog
   ) {}
@@ -31,18 +31,12 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.inSession = false;
     /* Aggiungo la reference globale usando il servizio wrapper creato */
-    this.windowRef.window.angularComponentRef = {
-      zone: this._ngZone,
-      func: (url) => {this.loadUrl(url)},
-      component: this
-    };
+    this.windowRef.window.loadUrl =  (url) => {this._ngZone.run(() => this.loadUrl(url))};
     /* Aggiungo il path alla homepage */
     this.linkList = [
       {link: '', label: 'Home Page'}
     ];
     this.scannedBeacons = [];
-    /* Sottoscrizione agli eventi che arrivano dal servizio condiviso */
-    this._sharedService.beaconLoad$.subscribe(bData => this.updateSidenav(bData));
   }
 
   addLink(link: Object) {
@@ -75,11 +69,13 @@ export class AppComponent implements OnInit {
       () => {
         // Se inizia la sessione setto la variabile
         this.inSession = true;
-        // Salvataggio dei dati del nuovo beacon (se è una stanza o un'opera)
-        this.saveData(data);
+        // Aggiorno il menù di navigazione
+        this.updateSidenav(data);
         // Mediante il servizio i dati del beacon vengono condivisi con gli altri componenti
         this._sharedService.emitBeaconData(data);
-        // this.router.navigate([data.type]);
+        // Salvataggio dei dati del nuovo beacon (se è una stanza o un'opera)
+        this.saveData(data);
+        // this._router.navigate([data.type]);
         /* apertura del dialog con le info del nuovo beacon */
         const dialogRef = this.dialog.open(DialogComponent, {
           data: data
@@ -106,7 +102,7 @@ export class AppComponent implements OnInit {
 
   private manageRouting(result: any) {
     if (result === 'change') {
-      this.router.navigate([this._globalService.currentBeacon.type]);
+      this._router.navigate([this._globalService.currentBeacon.type]);
     }
   }
 

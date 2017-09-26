@@ -10,25 +10,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor(
-    private router: Router, private jsonFetch: JsonFetchService, private _sharedService: ShareDataService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  loadBeaconData(url: string) {
-    url = 'http://localhost:3000/artwork2';
-    let data;
-    this.jsonFetch.getJsonData(url)
-    .subscribe(
-      res => data = res,
-      err => console.error,
-      () => {
-        this._sharedService.emitBeaconData(data);
-        this.router.navigate([data.type]);
-      }
-    );
   }
 
 }

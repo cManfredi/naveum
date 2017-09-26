@@ -56,8 +56,10 @@ const appRoutes: Routes = [
     InfoRoomComponent,
     DialogComponent
   ],
+  entryComponents: [
+    DialogComponent
+  ],
   imports: [
-    NgZone,
     RouterModule.forRoot(appRoutes, {enableTracing: true}),
     HttpModule,
     BrowserModule,

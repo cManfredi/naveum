@@ -6,5 +6,8 @@
     <h1 style="margin-left:20px;">
       Naveum
     </h1>
+    <button *ngIf='artworkLoaded' class="square-button" (click)="goToCurrentPage()">
+      <img [src]="getImgUrl()"/>
+    </button>
   </md-toolbar>
 </header>

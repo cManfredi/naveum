@@ -49,10 +49,10 @@ export class GenericJsonClass {
 export class Room extends GenericJsonClass {
   private _artworks: Array<Artwork>;
     public get artworks(): Array<Artwork> {
-      return this.artworks;
+      return this._artworks;
     }
     public set artworks(value: Array<Artwork>) {
-      this.artworks = value;
+      this._artworks = value;
     }
 
   constructor(id, title, desc, imgUrl, contStyle) {
