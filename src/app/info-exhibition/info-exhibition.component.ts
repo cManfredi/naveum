@@ -16,12 +16,12 @@ export class InfoExhibitionComponent implements OnInit {
 
   ngOnInit() {
     /* Sottoscrizione agli eventi che arrivano dal servizio condiviso */
-    this._sharedService.beaconLoad$.subscribe(bData => this.refresh(bData));
+    this._sharedService.beaconLoad$.subscribe(bData => this.updatePage(bData));
     const initData: any = this._globalService.currentBeacon;
-    this.refresh(initData);
+    
   }
 
-  refresh(bData) {
+  updatePage(bData) {
     console.log('refreshing data');
     if (bData.type === 'exhibition') {
       this.name = bData.title;
@@ -36,6 +36,10 @@ export class InfoExhibitionComponent implements OnInit {
 
   getImgUrl() {
     return this.imgUrl;
+  }
+
+  getdescription() {
+    return this.description;
   }
 
 }
