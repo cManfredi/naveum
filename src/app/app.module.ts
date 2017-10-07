@@ -11,8 +11,10 @@ import {
   MdButtonModule,
   MdIconModule,
   MdListModule,
-  MdDialogModule
+  MdDialogModule,
+  MdTabsModule
 } from '@angular/material';
+import { InlineSVGModule } from 'ng-inline-svg';
 
 /* Componenti */
 import { AppComponent } from './app.component';
@@ -69,7 +71,9 @@ const appRoutes: Routes = [
     MdButtonModule,
     MdIconModule,
     MdListModule,
-    MdDialogModule
+    MdDialogModule,
+    MdTabsModule,
+    InlineSVGModule
   ],
   providers: [
     JsonFetchService,
