@@ -62,6 +62,10 @@ export class AppComponent implements OnInit {
 
   loadUrl(url: string) {
     let data;
+    /* Recupero dall'url l'indirizzo del db per costruire altre query */
+    const urlComponents: string[] = url.split('/');
+    this._jsonService.setDbUrl(urlComponents[0] + '//' + urlComponents[2]);
+    /* Recupero i dati dal db */
     this._jsonService.getJsonData(url)
     .subscribe(
       res => data = res,
@@ -91,6 +95,8 @@ export class AppComponent implements OnInit {
   saveData(data: any) {
     this._globalService.currentBeacon = data;
     switch (data.type) {
+      case 'exhibition':
+        break;
       case 'room':
         const room: classes.Room = new classes.Room(data.id, data.title, data.description, data.imgUrl, data.containerStyle);
         this._globalService.addRoom(room);

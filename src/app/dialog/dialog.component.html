@@ -1,17 +1,17 @@
 <h1 md-dialog-title>New beacon detected!</h1>
 <div md-dialog-content>
-  <p *ngIf="type === 'room'">
-    Exhibition entered: {{title}}\n
-    Do you want to change page?
-  </p>
-  <p *ngIf="type === 'room'">
-    Room entered: {{title}}\n
-    Do you want to change page?
-  </p>
-  <p *ngIf="type === 'artwork'">
-    Artwork found: {{title}}\n
-    Do you want to change page?
-  </p>
+  <div *ngIf="type === 'exhibition'">
+    <h3 class="mat-h3">New exhibition found: {{title}}</h3>
+    <h3 class="mat-h3">Do you want to change page?</h3>
+  </div>
+  <div *ngIf="type === 'room'">
+    <h3 class="mat-h3">New room found: {{title}}</h3>
+    <h3 class="mat-h3">Do you want to change page?</h3>
+  </div>
+  <div *ngIf="type === 'artwork'">
+    <h3 class="mat-h3">New artwork found: {{title}}</h3>
+    <h3 class="mat-h3">Do you want to change page?</h3>
+  </div>
 </div>
 <div md-dialog-actions>
   <button md-button [md-dialog-close]="'change'">Change page</button>
