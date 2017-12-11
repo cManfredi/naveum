@@ -62,6 +62,10 @@ export class AppComponent implements OnInit {
 
   loadUrl(url: string) {
     let data;
+    /* Recupero dall'url l'indirizzo del db per costruire altre query */
+    const urlComponents: string[] = url.split('/');
+    this._jsonService.setDbUrl(urlComponents[0] + '//' + urlComponents[2]);
+    /* Recupero i dati dal db */
     this._jsonService.getJsonData(url)
     .subscribe(
       res => data = res,
@@ -71,10 +75,11 @@ export class AppComponent implements OnInit {
         this.inSession = true;
         // Aggiorno il menù di navigazione
         this.updateSidenav(data);
-        // Mediante il servizio i dati del beacon vengono condivisi con gli altri componenti
-        this._sharedService.emitBeaconData(data);
         // Salvataggio dei dati del nuovo beacon (se è una stanza o un'opera)
         this.saveData(data);
+        // Mediante il servizio condiviso avviso i componenti che c'è un nuovo beacon da caricare nel caso
+        // di un refresh
+        this._sharedService.emitBeaconData(data);
         // this._router.navigate([data.type]);
         /* apertura del dialog con le info del nuovo beacon */
         const dialogRef = this.dialog.open(DialogComponent, {
@@ -91,8 +96,10 @@ export class AppComponent implements OnInit {
   saveData(data: any) {
     this._globalService.currentBeacon = data;
     switch (data.type) {
+      case 'exhibition':
+        break;
       case 'room':
-        const room: classes.Room = new classes.Room(data.id, data.title, data.description, data.imgUrl, data.containerStyle);
+        const room: classes.Room = new classes.Room(data.id, data.title, data.description, data.svgUrl, data.containerStyle);
         this._globalService.addRoom(room);
         break;
       case 'artwork':

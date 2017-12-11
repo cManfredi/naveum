@@ -4,14 +4,15 @@ import * as classes from '../classes';
 @Injectable()
 export class GlobalService {
   public lang: string;
-  public currentPage: string;
+  public currentPage = '';
   public currentBeacon: any;
 
   public rooms: Array<classes.Room>;
-  public currentRoom: number;
+  public currentRoom = 0;
 
   constructor() {
     this.lang = 'en';
+    this.rooms = [];
   }
 
   /* Le due funzioni sono separate perchè è possibile aggiungere una stanza ma non cambiare pagina */
