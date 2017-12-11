@@ -75,10 +75,11 @@ export class AppComponent implements OnInit {
         this.inSession = true;
         // Aggiorno il menù di navigazione
         this.updateSidenav(data);
-        // Mediante il servizio i dati del beacon vengono condivisi con gli altri componenti
-        this._sharedService.emitBeaconData(data);
         // Salvataggio dei dati del nuovo beacon (se è una stanza o un'opera)
         this.saveData(data);
+        // Mediante il servizio condiviso avviso i componenti che c'è un nuovo beacon da caricare nel caso
+        // di un refresh
+        this._sharedService.emitBeaconData(data);
         // this._router.navigate([data.type]);
         /* apertura del dialog con le info del nuovo beacon */
         const dialogRef = this.dialog.open(DialogComponent, {
@@ -98,7 +99,7 @@ export class AppComponent implements OnInit {
       case 'exhibition':
         break;
       case 'room':
-        const room: classes.Room = new classes.Room(data.id, data.title, data.description, data.imgUrl, data.containerStyle);
+        const room: classes.Room = new classes.Room(data.id, data.title, data.description, data.svgUrl, data.containerStyle);
         this._globalService.addRoom(room);
         break;
       case 'artwork':

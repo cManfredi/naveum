@@ -3,7 +3,7 @@
 export class GenericJsonClass {
   protected _id: number;
     public get id(): number {
-      return this.id;
+      return this._id;
     }
     public set id(val: number) {
       this._id = val;
