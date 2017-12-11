@@ -27,7 +27,7 @@
       "id": 1,
       "type": "room",
       "title": "First room",
-      "description": "In questa stanza si trovano alcune tra le opere migliori del museo.",
+      "description": "In questa stanza si trovano alcune tra le opere migliori del museo di louvre.",
       "svgUrl": "https://drive.google.com/uc?export=download&id=0B9JjlYgT2lm4eG9uSWk2TlRLcWs",
       "containerStyle": ""
     }
