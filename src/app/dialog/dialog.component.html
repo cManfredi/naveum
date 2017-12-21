@@ -1,6 +1,5 @@
 <h1 md-dialog-title>Nuovo beacon Trovato!</h1>
 <div md-dialog-content>
-<<<<<<< HEAD
   <p *ngIf="type === 'exhibition'">
     Mostra: {{title}} <br>
     Sei pronto a visitare la mostra?
@@ -18,20 +17,6 @@
     Museo : {{title}} <br>
     Leggi informazioni museo?
   </p>
-=======
-  <div *ngIf="type === 'exhibition'">
-    <h3 class="mat-h3">New exhibition found: {{title}}</h3>
-    <h3 class="mat-h3">Do you want to change page?</h3>
-  </div>
-  <div *ngIf="type === 'room'">
-    <h3 class="mat-h3">New room found: {{title}}</h3>
-    <h3 class="mat-h3">Do you want to change page?</h3>
-  </div>
-  <div *ngIf="type === 'artwork'">
-    <h3 class="mat-h3">New artwork found: {{title}}</h3>
-    <h3 class="mat-h3">Do you want to change page?</h3>
-  </div>
->>>>>>> 7c187f5c2610cbb56cd6c5fe2a4ebc4a53ed7f51
 </div>
 <div md-dialog-actions>
   <button md-button [md-dialog-close]="'change'">Si</button>

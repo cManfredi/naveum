@@ -1,13 +1,4 @@
 {
-  "museum":
-  {
-    "type": "museum",
-    "title": "Museo del Louvre" ,
-    "description": "Il Museo del Louvre (in francese Musée du Louvre) a Parigi, in Francia, è uno dei più celebri musei del mondo e il primo per numero di visitatori: 8,8 milioni l'anno. Si trova sulla rive droite, nel I arrondissement, tra la Senna e Rue de Rivoli. Il museo ha preso il nome dal palazzo che lo ospita. Originariamente era una fortezza, costruita alla fine del XII secolo durante il regno del re capetingio Filippo II, nei rifacimenti successivi fu sede reale e governativa. La conformazione attuale del palazzo origina dai lavori ordinati da Carlo V nella seconda metà del XIV secolo. Fu la sede effettiva della monarchia francese fino al 1682, quando Luigi XIV si trasferì nella Reggia di Versailles, e rimase comunque la sua sede formale fino al termine dell'Ancien Régime nel 1789. Fu il governo rivoluzionario a dare piena attuazione a progetti già avviati di trasformazione in museo, inaugurandolo come tale nel 1793, anche se il palazzo continuò ad ospitare enti governativi fino agli anni novanta. Per iniziativa del presidente Mitterand fu sottoposto a lavori di rifacimento e ampliamento negli anni ottanta e novanta secondo il progetto denominato Grand Louvre, che comprende la caratteristica piramide di vetro e acciaio nel cortile principale. Il ruolo centrale della Francia nella storia dell'ottocento contribuì grandemente all'accrescimento delle collezione museale, che comprende alcune delle più famose opere d'arte del mondo e manufatti di grande valore storico, come la stele degli avvoltoi e quella di Hammurabi. Vi sono esposte la Gioconda e la Vergine delle Rocce di Leonardo da Vinci, le Nozze di Cana (Veronese), i due Prigioni di Michelangelo Buonarroti, Amore e Psiche di Antonio Canova, Il giuramento degli Orazi di Jacques-Louis David, La zattera della Medusa di Théodore Géricault, La Libertà che guida il popolo di Eugène Delacroix, la Venere di Milo e la Nike di Samotracia, il Codice di Hammurabi. La statua equestre di Luigi XIV rappresenta il punto di origine del cosiddetto Axe historique, anche se il palazzo non è allineato con l'asse stesso.",
-    "imgUrl": "https://it.wikipedia.org/wiki/Museo_del_Louvre#/media/File:Louvre_at_night_centered.jpg",
-    "containerStyle": "" 
-  },
-
   "exhibitions":
   [
     {
@@ -17,7 +8,15 @@
       "description": "With its blend of mystery, truth and illusion, the mirror is a complex object. An emblematic adjunct in paintings imitating reality or seeking to provide different points of view, it is also the indispensable accessory for the painter engaged in a self-portrait. The perfect imitator, deceiver, revealer, object of cogitation, of image within image, and even of divination, the reflection in a mirror is never unambiguous. Here a group of works from the 16th century through to the present day invites visitors to hone their eye and speculate on what they are seeing, or what they think they are seeing.",
       "organizedBy": "",
       "imgUrl": "http://www.louvre.fr/sites/default/files/imagecache/235x196/medias/medias_images/images/louvre-cyprien-boulet-dit-eugene-boulet-portrait-de-madame-trentesaux-nee-yvonne-dewavrin.jpg?1479985098",
-      "containerStyle": "" 
+      "containerStyle": "",
+      "museum":
+      {
+        "type": "museum",
+        "title": "Museo del Louvre" ,
+        "description": "Il Museo del Louvre (in francese Musée du Louvre) a Parigi, in Francia, è uno dei più celebri musei del mondo e il primo per numero di visitatori: 8,8 milioni l'anno. Si trova sulla rive droite, nel I arrondissement, tra la Senna e Rue de Rivoli. Il museo ha preso il nome dal palazzo che lo ospita. Originariamente era una fortezza, costruita alla fine del XII secolo durante il regno del re capetingio Filippo II, nei rifacimenti successivi fu sede reale e governativa. La conformazione attuale del palazzo origina dai lavori ordinati da Carlo V nella seconda metà del XIV secolo. Fu la sede effettiva della monarchia francese fino al 1682, quando Luigi XIV si trasferì nella Reggia di Versailles, e rimase comunque la sua sede formale fino al termine dell'Ancien Régime nel 1789. Fu il governo rivoluzionario a dare piena attuazione a progetti già avviati di trasformazione in museo, inaugurandolo come tale nel 1793, anche se il palazzo continuò ad ospitare enti governativi fino agli anni novanta. Per iniziativa del presidente Mitterand fu sottoposto a lavori di rifacimento e ampliamento negli anni ottanta e novanta secondo il progetto denominato Grand Louvre, che comprende la caratteristica piramide di vetro e acciaio nel cortile principale. Il ruolo centrale della Francia nella storia dell'ottocento contribuì grandemente all'accrescimento delle collezione museale, che comprende alcune delle più famose opere d'arte del mondo e manufatti di grande valore storico, come la stele degli avvoltoi e quella di Hammurabi. Vi sono esposte la Gioconda e la Vergine delle Rocce di Leonardo da Vinci, le Nozze di Cana (Veronese), i due Prigioni di Michelangelo Buonarroti, Amore e Psiche di Antonio Canova, Il giuramento degli Orazi di Jacques-Louis David, La zattera della Medusa di Théodore Géricault, La Libertà che guida il popolo di Eugène Delacroix, la Venere di Milo e la Nike di Samotracia, il Codice di Hammurabi. La statua equestre di Luigi XIV rappresenta il punto di origine del cosiddetto Axe historique, anche se il palazzo non è allineato con l'asse stesso.",
+        "imgUrl": "https://it.wikipedia.org/wiki/Museo_del_Louvre#/media/File:Louvre_at_night_centered.jpg",
+        "containerStyle": "" 
+      }
     }
   ],
 

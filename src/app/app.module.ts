@@ -40,8 +40,8 @@ const appRoutes: Routes = [
   { path: '', component: MainComponent},
   { path: 'exhibition', component: InfoExhibitionComponent },
   { path: 'museum', component: InfoMuseumComponent },
-  { path: 'room', component: InfoRoomComponent},
-  { path: 'artwork', component: InfoArtworkComponent },
+  { path: 'room/:id', component: InfoRoomComponent},
+  { path: 'artwork/:id', component: InfoArtworkComponent },
   { path: '**', component: PageNotFoundComponent}
 ];
 

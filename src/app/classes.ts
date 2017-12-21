@@ -8,6 +8,13 @@ export class GenericJsonClass {
     public set id(val: number) {
       this._id = val;
     }
+  protected _type: string;
+    public get type(): string {
+      return this._type;
+    }
+    public set type(value: string) {
+      this._type = value;
+    }
   protected _title: string;
     public get title(): string {
       return this._title;
@@ -37,8 +44,9 @@ export class GenericJsonClass {
       this._containerStyle = value;
     }
 
-  constructor(id, title, desc, imgUrl, contStyle) {
+  constructor(id, type, title, desc, imgUrl, contStyle) {
     this._id = id;
+    this._type = type;
     this._title = title;
     this._description = desc;
     this._imgUrl = imgUrl;
@@ -47,21 +55,21 @@ export class GenericJsonClass {
 }
 
 export class Room extends GenericJsonClass {
-  private _artworks: Array<Artwork>;
-    public get artworks(): Array<Artwork> {
+  private _artworks: Array<number>;
+    public get artworks(): Array<number> {
       return this._artworks;
     }
-    public set artworks(value: Array<Artwork>) {
+    public set artworks(value: Array<number>) {
       this._artworks = value;
     }
 
-  constructor(id, title, desc, imgUrl, contStyle) {
-    super(id, title, desc, imgUrl, contStyle);
+  constructor(id, type, title, desc, imgUrl, contStyle) {
+    super(id, type, title, desc, imgUrl, contStyle);
     this.artworks = [];
   }
 
-  addArtwork(artwork: Artwork) {
-    this.artworks.push(artwork);
+  addArtwork(artworkId: number) {
+    this.artworks.push(artworkId);
   }
 
 }
@@ -82,8 +90,8 @@ export class Artwork extends GenericJsonClass {
       this.audioUrl = value;
     }
 
-  constructor(id, title, desc, imgUrl, contStyle, position, audioUrl) {
-    super(id, title, desc, imgUrl, contStyle);
+  constructor(id, type, title, desc, imgUrl, contStyle, position, audioUrl) {
+    super(id, type, title, desc, imgUrl, contStyle);
     this.position = position;
     this.audioUrl = audioUrl;
   }

@@ -7,6 +7,7 @@ import * as classes from './classes';
 import { GlobalService } from './services/global.service';
 import { WindowRefService } from './services/window-ref.service'
 import { DialogComponent } from './dialog/dialog.component';
+import { Artwork } from './classes';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit {
   private linkList: Object[];
   private scannedBeacons: Array<string>;
   public inSession: boolean;
+  private dialogUrl: string;
 
   constructor(
     private _sharedService: ShareDataService,
@@ -43,9 +45,9 @@ export class AppComponent implements OnInit {
     this.linkList.push(link);
   }
 
-  updateSidenav(bData) {
-    const newLink = {link: bData.type, label: bData.title};
-    const beaconId = bData.type + '_' + bData.title;
+  updateSidenav(data: any) {
+    const newLink = {link: data.url, label: data.title};
+    const beaconId = data.type + '_' + data.title;
     /* Per evitare i doppioni all'interno del menù di navigazione */
     if (!this.scannedBeacons.includes(beaconId)) {
       this.scannedBeacons.push(beaconId);
@@ -61,55 +63,143 @@ export class AppComponent implements OnInit {
   }
 
   loadUrl(url: string) {
-    let data;
-    /* Recupero dall'url l'indirizzo del db per costruire altre query */
+    // Controllo che la risorsa non sia già memorizzata, altrimenti la recupero dal db
     const urlComponents: string[] = url.split('/');
-    this._jsonService.setDbUrl(urlComponents[0] + '//' + urlComponents[2]);
-    /* Recupero i dati dal db */
-    this._jsonService.getJsonData(url)
-    .subscribe(
-      res => data = res,
-      err => console.error,
-      () => {
-        // Se inizia la sessione setto la variabile
-        this.inSession = true;
-        // Aggiorno il menù di navigazione
-        this.updateSidenav(data);
-        // Salvataggio dei dati del nuovo beacon (se è una stanza o un'opera)
-        this.saveData(data);
-        // Mediante il servizio condiviso avviso i componenti che c'è un nuovo beacon da caricare nel caso
-        // di un refresh
-        this._sharedService.emitBeaconData(data);
-        // this._router.navigate([data.type]);
-        /* apertura del dialog con le info del nuovo beacon */
-        const dialogRef = this.dialog.open(DialogComponent, {
-          data: data
-        });
-        // Gestione della chiusura del dialog con il risultato
-        dialogRef.afterClosed().subscribe(result => {
-          this.manageRouting(result);
-        })
-      }
-    );
+    const resource = urlComponents[3];
+    const id = Number.parseInt(urlComponents[4]);
+    let inMemory = false;
+    switch (resource) {
+      case 'exhibitions':
+        if (this._globalService.getExhibition() != null && this._globalService.getExhibition().id === id) {
+          inMemory = true;
+        }
+        break;
+      case 'rooms':
+        if (this._globalService.findRoom(id) !== undefined) {
+          inMemory = true;
+          const data = this._globalService.findRoom(id);
+          this.setNavigationUrl(data);
+          this.manageDialog(data);
+        }
+        break;
+      case 'artworks':
+        if (this._globalService.findArtwork(id) !== undefined) {
+          inMemory = true;
+          const data = this._globalService.findArtwork(id);
+          this.setNavigationUrl(data);
+          this.manageDialog(data);
+        }
+        break;
+    }
+    if (!inMemory) {
+      let data;
+      /* Recupero dall'url l'indirizzo del db per costruire altre query */
+      this._jsonService.setDbUrl(urlComponents[0] + '//' + urlComponents[2]);
+      /* Recupero i dati dal db */
+      this._jsonService.getJsonData(url)
+      .subscribe(
+        res => data = res,
+        err => console.error,
+        () => {
+          // Se inizia la sessione setto la variabile
+          this.inSession = true;
+          // Salvataggio dei dati del nuovo beacon (se è una stanza o un'opera)
+          this.saveData(data);
+          this.setNavigationUrl(data);
+          this.updateSidenav({url: this.dialogUrl, title: data.title});
+          // Aggiorno il menù di navigazione
+          this.manageDialog(data);
+        }
+      );
+    }
   }
 
   saveData(data: any) {
-    this._globalService.currentBeacon = data;
     switch (data.type) {
       case 'exhibition':
+        const exhibition: classes.GenericJsonClass =
+          new classes.GenericJsonClass(
+            data.id,
+            data.type,
+            data.title,
+            data.description,
+            data.imgUrl,
+            data.containerStyle
+          );
+          this._globalService.setExhibition(exhibition);
+          const museum: classes.GenericJsonClass =
+            new classes.GenericJsonClass(
+              null,
+              data.museum.type,
+              data.museum.title,
+              data.museum.description,
+              data.museum.imgUrl,
+              data.museum.containerStyle
+            );
+          this._globalService.setMuseum(museum);
         break;
       case 'room':
-        const room: classes.Room = new classes.Room(data.id, data.title, data.description, data.svgUrl, data.containerStyle);
+        const room: classes.Room =
+          new classes.Room(
+            data.id,
+            data.type,
+            data.title,
+            data.description,
+            data.svgUrl,
+            data.containerStyle);
         this._globalService.addRoom(room);
+        // recupero anche tutte le opere della stanza così da non doverle scaricare dopo
+        /* Recupero tutte le opere che ci sono all'interno di quella stanza */
+        const baseUrl = this._jsonService.getDbUrl();
+        this._jsonService.getJsonData(baseUrl + '/artworks?idRoom=' + data.id)
+        .subscribe(
+          res => data = res,
+          err => console.error,
+          () => {
+            // Devo salvare le opere in memoria per non doverle ricaricare
+            data.forEach(element => {
+              this.saveData(element);
+            });
+            /* Devo collegare i link alla mappa */
+            /* Devo popolare la lista delle opere */
+          }
+        );
         break;
       case 'artwork':
+        const artwork: classes.Artwork =
+          new classes.Artwork(
+            data.id,
+            data.type,
+            data.title,
+            data.desc,
+            data.imgUrl,
+            data.containerStyle,
+            data.position,
+            data.audioUrl);
+        this._globalService.addArtwork(artwork);
+        this._globalService.findRoom(data.idRoom).addArtwork(data.id);
         break;
     }
   }
 
+  private setNavigationUrl(data: any) {
+    this.dialogUrl = (data.type === 'exhibition') ? data.type : (data.type + '/' + data.id);
+  }
+
+  private manageDialog(data: any) {
+    /* apertura del dialog con le info del nuovo beacon */
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: {title: data.title, type: data.type}
+    });
+    // Gestione della chiusura del dialog con il risultato
+    dialogRef.afterClosed().subscribe(result => {
+      this.manageRouting(result);
+    })
+  }
+
   private manageRouting(result: any) {
     if (result === 'change') {
-      this._router.navigate([this._globalService.currentBeacon.type]);
+      this._router.navigate([this.dialogUrl]);
     }
   }
 

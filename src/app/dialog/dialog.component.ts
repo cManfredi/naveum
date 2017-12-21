@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dialog',
