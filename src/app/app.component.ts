@@ -177,7 +177,9 @@ export class AppComponent implements OnInit {
             data.position,
             data.audioUrl);
         this._globalService.addArtwork(artwork);
-        this._globalService.findRoom(data.idRoom).addArtwork(data.id);
+        if (this._globalService.findRoom(data.idRoom) !== undefined) {
+          this._globalService.findRoom(data.idRoom).addArtwork(data.id);
+        }
         break;
     }
   }

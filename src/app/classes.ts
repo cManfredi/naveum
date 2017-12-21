@@ -69,7 +69,9 @@ export class Room extends GenericJsonClass {
   }
 
   addArtwork(artworkId: number) {
-    this.artworks.push(artworkId);
+    if (this.artworks.find(idArt => artworkId === idArt) === undefined) {
+      this.artworks.push(artworkId);
+    }
   }
 
 }

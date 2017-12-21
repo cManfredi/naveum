@@ -17,7 +17,7 @@
     </md-nav-list>
   </md-sidenav>
   <div class="app-container">
-    <app-header (btnClicked)="sidenav.open()"></app-header>
+    <app-header class="fixed-toolbar" (btnClicked)="sidenav.open()"></app-header> 
     <!-- Router outlet -->
     <main class="main-container" (beaconFound)="addLink($event)">
       <router-outlet></router-outlet>

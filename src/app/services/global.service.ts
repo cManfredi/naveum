@@ -46,7 +46,9 @@ export class GlobalService {
   }
 
   addRoom(room: classes.Room) {
-    this.data.rooms.push(room);
+    if (this.findRoom(room.id) === undefined) {
+      this.data.rooms.push(room);
+    }
   }
 
   updateRoom(roomId: number) {
@@ -58,7 +60,9 @@ export class GlobalService {
   }
 
   addArtwork(artwork: classes.Artwork) {
-    this.data.artworks.push(artwork);
+    if (this.findRoom(artwork.id) === undefined) {
+      this.data.artworks.push(artwork);
+    }
   }
 
   updateArtwork(artworkId: number) {
