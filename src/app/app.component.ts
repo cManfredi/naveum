@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { JsonFetchService } from './services/json-fetch.service';
 import { ShareDataService } from './services/share-data.service';
-import { MdSidenavModule, MdDialog } from '@angular/material';
+import { MatSidenavModule, MatDialog } from '@angular/material';
 import { Component, OnInit, NgZone } from '@angular/core';
 import * as classes from './classes';
 import { GlobalService } from './services/global.service';
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     private _jsonService: JsonFetchService,
     private _router: Router,
     private windowRef: WindowRefService,
-    public dialog: MdDialog
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {

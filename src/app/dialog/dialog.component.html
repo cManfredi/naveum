@@ -1,5 +1,5 @@
-<h1 md-dialog-title>Nuovo beacon Trovato!</h1>
-<div md-dialog-content>
+<h1 mat-dialog-title>Nuovo beacon Trovato!</h1>
+<div mat-dialog-content>
   <p *ngIf="type === 'exhibition'">
     Mostra: {{title}} <br>
     Sei pronto a visitare la mostra?
@@ -18,7 +18,7 @@
     Leggi informazioni museo?
   </p>
 </div>
-<div md-dialog-actions>
-  <button md-button [md-dialog-close]="'change'">Si</button>
-  <button md-button [md-dialog-close]="'remain'">Non ora</button>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="'change'">Si</button>
+  <button mat-button [mat-dialog-close]="'remain'">Non ora</button>
 </div>

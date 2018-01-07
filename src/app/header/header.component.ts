@@ -1,6 +1,6 @@
 import {ShareDataService} from '../services/share-data.service';
 import {GlobalService} from '../services/global.service';
-import { MdSidenavModule } from '@angular/material';
+import { MatSidenavModule } from '@angular/material';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({

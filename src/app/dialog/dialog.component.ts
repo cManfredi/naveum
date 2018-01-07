@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,8 +12,8 @@ export class DialogComponent implements OnInit {
   title: string;
 
   constructor(
-    public dialogRef: MdDialogRef<DialogComponent>,
-    @Inject(MD_DIALOG_DATA) public data: any
+    public dialogRef: MatDialogRef<DialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.type = data.type;
     this.title = data.title;

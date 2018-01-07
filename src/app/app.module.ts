@@ -6,13 +6,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import 'hammerjs';
 import {
-  MdSidenavModule,
-  MdToolbarModule,
-  MdButtonModule,
-  MdIconModule,
-  MdListModule,
-  MdDialogModule,
-  MdTabsModule
+  MatSidenavModule,
+  MatToolbarModule,
+  MatButtonModule,
+  MatIconModule,
+  MatListModule,
+  MatDialogModule,
+  MatTabsModule
 } from '@angular/material';
 import { InlineSVGModule } from 'ng-inline-svg';
 
@@ -66,13 +66,13 @@ const appRoutes: Routes = [
     HttpModule,
     BrowserModule,
     BrowserAnimationsModule,
-    MdSidenavModule,
-    MdToolbarModule,
-    MdButtonModule,
-    MdIconModule,
-    MdListModule,
-    MdDialogModule,
-    MdTabsModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatDialogModule,
+    MatTabsModule,
     InlineSVGModule
   ],
   providers: [
