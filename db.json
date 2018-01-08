@@ -4,10 +4,10 @@
     {
       "id": 1,
       "type": "exhibition",
-      "title": "Mirrors" ,
-      "description": "With its blend of mystery, truth and illusion, the mirror is a complex object. An emblematic adjunct in paintings imitating reality or seeking to provide different points of view, it is also the indispensable accessory for the painter engaged in a self-portrait. The perfect imitator, deceiver, revealer, object of cogitation, of image within image, and even of divination, the reflection in a mirror is never unambiguous. Here a group of works from the 16th century through to the present day invites visitors to hone their eye and speculate on what they are seeing, or what they think they are seeing.",
+      "title": "Le Opere più famose del Louvre" ,
+      "description": "In questa mostra sono raccolte le opere più famose appartenenti al Louvre. Grazie a questa guida interattiva sarà possibile visitare le opere dei pittori più importanti del mondo.",
       "organizedBy": "",
-      "imgUrl": "http://www.louvre.fr/sites/default/files/imagecache/235x196/medias/medias_images/images/louvre-cyprien-boulet-dit-eugene-boulet-portrait-de-madame-trentesaux-nee-yvonne-dewavrin.jpg?1479985098",
+      "imgUrl": "https://victortravelblogdotcom.files.wordpress.com/2013/08/mona-lisa-leonardo-da-vinci-louvre-17.jpg?w=700",
       "containerStyle": "",
       "museum":
       {
@@ -25,8 +25,8 @@
     {
       "id": 1,
       "type": "room",
-      "title": "First room",
-      "description": "In questa stanza si trovano alcune tra le opere migliori del museo di louvre.",
+      "title": "1 (Ala Denon, Primo Piano)",
+      "description": "Nell'ala Denon, a destra dell'ingresso, affacciate sulla Senna, si trovano varie stanze con opere di alcuni pittori italiani e francesi. In particolare in questa stanza si trovano alcune tra le opere più famose del museo di louvre appartententi a Jacques-Louis David, Leonardo da Vinci ed Eugène Delacroix.",
       "svgUrl": "https://drive.google.com/uc?export=download&id=0B9JjlYgT2lm4eG9uSWk2TlRLcWs",
       "containerStyle": ""
     }

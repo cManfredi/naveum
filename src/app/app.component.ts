@@ -171,7 +171,7 @@ export class AppComponent implements OnInit {
             data.id,
             data.type,
             data.title,
-            data.desc,
+            data.description,
             data.imgUrl,
             data.containerStyle,
             data.position,

@@ -29,13 +29,6 @@ export class InfoArtworkComponent implements OnInit {
         this.updatePage(data);
       };
     });
-    // const initData: any = this._sharedService.getLastBeacon();
-    // if (initData.type === 'artwork') {
-    //   this.title = initData.title;
-    //   this.imgUrl = initData.imgUrl;
-    //   this.description = initData.description;
-    //   this.audioUrl = initData.audioUrl;
-    // }
   }
 
   updatePage(bData) {
@@ -57,7 +50,7 @@ export class InfoArtworkComponent implements OnInit {
     return this.audioUrl;
   }
 
-   getdescription() {
+  getDescription() {
     return this.description;
   }
 
