@@ -1,6 +1,5 @@
 import { Router } from '@angular/router';
 import { JsonFetchService } from './services/json-fetch.service';
-import { ShareDataService } from './services/share-data.service';
 import { MatSidenavModule, MatDialog } from '@angular/material';
 import { Component, OnInit, NgZone } from '@angular/core';
 import * as classes from './classes';
@@ -22,7 +21,6 @@ export class AppComponent implements OnInit {
   private dialogUrl: string;
 
   constructor(
-    private _sharedService: ShareDataService,
     private _globalService: GlobalService,
     private _ngZone: NgZone,
     private _jsonService: JsonFetchService,
