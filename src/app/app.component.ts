@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   private linkList: Object[];
   private scannedBeacons: Array<string>;
   public inSession: boolean;
+  public differentPage: boolean;
   private dialogUrl: string;
 
   constructor(
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.inSession = false;
+    this.differentPage = false;
     /* Aggiungo la reference globale usando il servizio wrapper creato */
     this.windowRef.window.loadUrl =  (url) => {this._ngZone.run(() => this.loadUrl(url))};
     /* Aggiungo il path alla homepage */

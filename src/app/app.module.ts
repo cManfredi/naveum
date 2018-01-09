@@ -33,6 +33,7 @@ import { JsonFetchService } from './services/json-fetch.service';
 import { ShareDataService } from './services/share-data.service';
 import { GlobalService } from './services/global.service';
 import { WindowRefService } from './services/window-ref.service';
+import { OverButtonComponent } from './over-button/over-button.component';
 
 /* Routes predefinite dell'applicazione, a mano a mano che si scoprono nuove pagine è possibile
    ne verranno aggiunte altre alla configurazione del router */
@@ -56,7 +57,8 @@ const appRoutes: Routes = [
     InfoMuseumComponent,
     InfoArtworkComponent,
     InfoRoomComponent,
-    DialogComponent
+    DialogComponent,
+    OverButtonComponent
   ],
   entryComponents: [
     DialogComponent

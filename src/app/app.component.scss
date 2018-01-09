@@ -28,10 +28,13 @@ mat-sidenav-container {
 .main-container {
   margin-top: 56px;
   flex: 1;
+  height: calc(100vh - 56px);
 }
 
 .fixed-toolbar {
-  position: absolute;
-  z-index: 1;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
   width: 100%  !important;
 }

@@ -15,13 +15,14 @@
           Close session
       </a>
     </mat-nav-list>
+    <app-footer></app-footer>
   </mat-sidenav>
   <div class="app-container">
     <app-header class="fixed-toolbar" (btnClicked)="sidenav.open()"></app-header> 
     <!-- Router outlet -->
-    <main class="main-container" (beaconFound)="addLink($event)">
+    <main class="main-container">
       <router-outlet></router-outlet>
     </main>
-    <app-footer></app-footer>
   </div>
 </mat-sidenav-container>
+<app-over-button *ngIf="differentPage"></app-over-button>
