@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router/src/router_state';
 
 @Component({
   selector: 'app-over-button',
@@ -7,12 +6,11 @@ import { ActivatedRoute } from '@angular/router/src/router_state';
   styleUrls: ['./over-button.component.scss']
 })
 export class OverButtonComponent implements OnInit {
+  private link: string;
 
-  constructor(private _route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit() {
-    // Sottoscrizione alla lettura di un nuovo beacon
-    
   }
 
 }
