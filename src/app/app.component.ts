@@ -119,11 +119,14 @@ export class AppComponent implements OnInit {
           // Salvataggio dei dati del nuovo beacon (se è una stanza o un'opera)
           this.saveData(data);
           this.updateSidenav({url: this.dialogUrl, title: data.title});
+          this.setNavigationUrl(data);
+          this.manageDialog(data);
         }
       );
+    } else {
+      this.setNavigationUrl(data);
+      this.manageDialog(data);
     }
-    this.setNavigationUrl(data);
-    this.manageDialog(data);
   }
 
   saveData(data: any) {
