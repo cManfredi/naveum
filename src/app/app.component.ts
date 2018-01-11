@@ -6,6 +6,7 @@ import * as classes from './classes';
 import { GlobalService } from './services/global.service';
 import { WindowRefService } from './services/window-ref.service'
 import { DialogComponent } from './dialog/dialog.component';
+import { DialogExitComponent } from './dialog-exit/dialog-exit.component';
 import { Artwork } from './classes';
 
 @Component({
@@ -68,31 +69,43 @@ export class AppComponent implements OnInit {
     const resource = urlComponents[3];
     const id = Number.parseInt(urlComponents[4]);
     let inMemory = false;
+    let data;
     switch (resource) {
       case 'exhibitions':
-        if (this._globalService.getExhibition() != null && this._globalService.getExhibition().id === id) {
-          inMemory = true;
+        // Nel caso l'esibizione trovata sia diversa dall'attuale è necessario chiudere la sessione e riaprire
+        if (this._globalService.getExhibition() != null) {
+          if (this._globalService.getExhibition().id === id) {
+            inMemory = true;
+            data = this._globalService.getExhibition();
+          } else {
+            // Mostro un dialogo che chiede se chiudere la sessione e aprirne una nuova con la nuova esibizione
+            const dialogExit = this.dialog.open(DialogExitComponent, {
+              data: {title: data.title}
+            });
+            dialogExit.afterClosed().subscribe(result => {
+              if (result === 'ok') {
+                // chiudo la sessione
+                this.closeSession();
+                // inMemory rimane false così il programma recupera la nuova esibizione
+              }
+            });
+          }
         }
         break;
       case 'rooms':
         if (this._globalService.findRoom(id) !== undefined) {
           inMemory = true;
-          const data = this._globalService.findRoom(id);
-          this.setNavigationUrl(data);
-          this.manageDialog(data);
+          data = this._globalService.findRoom(id);
         }
         break;
       case 'artworks':
         if (this._globalService.findArtwork(id) !== undefined) {
           inMemory = true;
-          const data = this._globalService.findArtwork(id);
-          this.setNavigationUrl(data);
-          this.manageDialog(data);
+          data = this._globalService.findArtwork(id);
         }
         break;
     }
     if (!inMemory) {
-      let data;
       /* Recupero dall'url l'indirizzo del db per costruire altre query */
       this._jsonService.setDbUrl(urlComponents[0] + '//' + urlComponents[2]);
       /* Recupero i dati dal db */
@@ -105,13 +118,12 @@ export class AppComponent implements OnInit {
           this.inSession = true;
           // Salvataggio dei dati del nuovo beacon (se è una stanza o un'opera)
           this.saveData(data);
-          this.setNavigationUrl(data);
           this.updateSidenav({url: this.dialogUrl, title: data.title});
-          // Aggiorno il menù di navigazione
-          this.manageDialog(data);
         }
       );
     }
+    this.setNavigationUrl(data);
+    this.manageDialog(data);
   }
 
   saveData(data: any) {
@@ -202,11 +214,20 @@ export class AppComponent implements OnInit {
   private manageRouting(result: any) {
     if (result === 'change') {
       this._router.navigate([this.dialogUrl]);
+    } else if (result === 'remain') {
+      this.differentPage = true;
     }
   }
 
   closeSession() {
-    // TO-DO
+    this.inSession = false;
+    this.differentPage = false;
+    this.linkList = [
+      {link: '', label: 'Home Page'}
+    ];
+    this.scannedBeacons = [];
+    this._globalService.clearData();
+    this.dialogUrl = '';
   }
 
 }

@@ -27,6 +27,7 @@ import { InfoMuseumComponent } from './info-museum/info-museum.component';
 import { InfoArtworkComponent } from './info-artwork/info-artwork.component';
 import { InfoRoomComponent } from './info-room/info-room.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { DialogExitComponent } from './dialog-exit/dialog-exit.component';
 
 /* Servizi */
 import { JsonFetchService } from './services/json-fetch.service';
@@ -58,10 +59,13 @@ const appRoutes: Routes = [
     InfoArtworkComponent,
     InfoRoomComponent,
     DialogComponent,
-    OverButtonComponent
+    DialogExitComponent,
+    OverButtonComponent,
+    DialogExitComponent
   ],
   entryComponents: [
-    DialogComponent
+    DialogComponent,
+    DialogExitComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {enableTracing: true}),

@@ -14,11 +14,17 @@ export class GlobalService {
   public currentPage = '';
   public currentBeacon: any;
 
-  public currentRoom = 0;
-  public currentArtwork = 0;
+  public currentRoom: number;
+  public currentArtwork: number;
 
   constructor() {
     this.lang = 'en';
+    this.init();
+  }
+
+  private init(): void {
+    this.currentArtwork = 0;
+    this.currentRoom = 0;
     this.data = {
       museum: null,
       exhibition: null,
@@ -71,6 +77,10 @@ export class GlobalService {
 
   findArtwork(artworkId: number): classes.Artwork {
     return this.data.artworks.find( artwork => artworkId === artwork.id);
+  }
+
+  clearData(): void {
+    this.init();
   }
 
 }
