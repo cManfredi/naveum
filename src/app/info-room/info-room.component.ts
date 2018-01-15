@@ -1,8 +1,9 @@
 import {JsonFetchService} from '../services/json-fetch.service';
 import { GlobalService } from '../services/global.service';
 import { Component, OnInit } from '@angular/core';
-import { ShareDataService } from '../services/share-data.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Artwork } from '../classes';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-info-room',
@@ -14,10 +15,13 @@ export class InfoRoomComponent implements OnInit {
   private imgUrl: string;
   private description: string;
   private svg: string;
+  public artworks: Array<any>;
 
-  constructor(private _route: ActivatedRoute, private _globalService: GlobalService, private _jsonService: JsonFetchService) { }
+  // tslint:disable-next-line:max-line-length
+  constructor(private _router: Router, private _route: ActivatedRoute, private _globalService: GlobalService, private _jsonService: JsonFetchService) { }
 
   ngOnInit() {
+    this.artworks = [];
     /* Sottoscrizione agli eventi che arrivano dal servizio condiviso */
     // this._sharedService.beaconLoad$.subscribe(bData => this.refresh(bData));
     // const initData: any = this._globalService.currentBeacon;
@@ -37,10 +41,19 @@ export class InfoRoomComponent implements OnInit {
     this.name = bData.title;
     this.svg = bData.svgUrl;
     this.description = bData.description;
+    bData.artworks.forEach(element => {
+      const artwork = this._globalService.findArtwork(element);
+      this.artworks.push({id: artwork.id, title: artwork.title, link: '/artwork/' + artwork.id});
+    });
+    this.artworks.sort((a, b) => a.id - b.id);
   }
 
   getSvgUrl(): string {
     return this.svg;
+  }
+
+  manageRouting(url: string) {
+    this._router.navigate([url]);
   }
 
 }

@@ -13,7 +13,7 @@
       </a>
       <a mat-list-item 
         *ngFor="let link of getLinkList()" 
-        routerLink="link.link" 
+        [routerLink]="link.link" 
         routerLinkActive=true 
         (click)="sidenav.close()">
           {{link.label}}
