@@ -1,17 +1,28 @@
 <mat-sidenav-container #sidenav>
   <mat-sidenav mode="over" id="sidenav-menu">
-    <div class="sidenav-img"></div>
+    <div class="sidenav-img-div">
+      <img class="sidenav-img" [src]=sidenavImg>
+    </div>
     <mat-nav-list>
       <a mat-list-item 
+        class="sidenav-ex-row"
+        routerLink="{{exhibitionUrl}}" 
+        routerLinkActive=true 
+        (click)="sidenav.close()">
+          <p>{{sidenavTitle}}</p>
+      </a>
+      <a mat-list-item 
         *ngFor="let link of getLinkList()" 
-        [routerLink]="link.link" 
+        routerLink="link.link" 
         routerLinkActive=true 
         (click)="sidenav.close()">
           {{link.label}}
       </a>
       <a mat-list-item 
         *ngIf="inSession"
-        (click)="closeSession()">
+        routerLink="" 
+        routerLinkActive=true 
+        (click)="closeSession();sidenav.close()">
           Close session
       </a>
     </mat-nav-list>

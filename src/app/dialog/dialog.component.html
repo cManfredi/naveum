@@ -1,24 +1,39 @@
-<h1 mat-dialog-title>Nuovo beacon Trovato!</h1>
 <div mat-dialog-content>
-  <p *ngIf="type === 'exhibition'">
-    Mostra: {{title}} <br>
-    Sei pronto a visitare la mostra?
-  </p>
-  <p *ngIf="type === 'room'">
-    Stanza : {{title}} <br>
-    Sei pronto ad entrare nella stanza?
-  </p>
-  <p *ngIf="type === 'artwork'">
-    Opera: {{title}} <br>
-    Sei pronto a vedere l'opera <br>
-    che hai di fronte?
-  </p>
-  <p *ngIf="type === 'museum'">
-    Museo : {{title}} <br>
-    Leggi informazioni museo?
-  </p>
+  <div class="dialog-content" *ngIf="type === 'exhibition'">
+    <h1 class="mat-h1">
+      Mostra
+    </h1>
+    <h3 class="mat-h3">
+      "{{title}}"
+    </h3>
+    <h3 class="mat-h3">
+      Vuoi iniziare la visita?
+    </h3>
+  </div>
+  <div class="dialog-content" *ngIf="type === 'room'">
+    <h1 class="mat-h1">
+      Stanza
+    </h1>
+    <h3 class="mat-h3">
+      "{{title}}"
+    </h3>
+    <h3 class="mat-h3">
+      Sei pronto ad entrare nella stanza?
+    </h3>
+  </div>
+  <div class="dialog-content" *ngIf="type === 'artwork'">
+    <h1 class="mat-h1">
+      Opera
+    </h1>
+    <h3 class="mat-h3">
+      "{{title}}"
+    </h3>
+    <h3 class="mat-h3">
+      Vuoi osservare l'opera che hai di fronte?
+    </h3>
+  </div>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions style="justify-content:center;">
   <button mat-button [mat-dialog-close]="'change'">Si</button>
   <button mat-button [mat-dialog-close]="'remain'">Non ora</button>
 </div>

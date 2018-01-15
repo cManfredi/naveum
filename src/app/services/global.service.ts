@@ -33,6 +33,10 @@ export class GlobalService {
     };
   }
 
+  getData(): any {
+    return this.data;
+  }
+
   /* Le due funzioni sono separate perchè è possibile aggiungere una stanza ma non cambiare pagina */
 
   getMuseum(): classes.GenericJsonClass {
@@ -65,8 +69,12 @@ export class GlobalService {
     return this.data.rooms.find( room => roomId === room.id);
   }
 
+  getRooms(): Array<classes.Room> {
+    return this.data.rooms;
+  }
+
   addArtwork(artwork: classes.Artwork) {
-    if (this.findRoom(artwork.id) === undefined) {
+    if (this.findArtwork(artwork.id) === undefined) {
       this.data.artworks.push(artwork);
     }
   }

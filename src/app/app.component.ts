@@ -19,6 +19,9 @@ export class AppComponent implements OnInit {
   private scannedBeacons: Array<string>;
   public inSession: boolean;
   public differentPage: boolean;
+  public sidenavImg: string;
+  public sidenavTitle: string;
+  public exhibitionUrl: string;
   private dialogUrl: string;
 
   constructor(
@@ -31,35 +34,54 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.inSession = false;
-    this.differentPage = false;
+    this.init();
     /* Aggiungo la reference globale usando il servizio wrapper creato */
     this.windowRef.window.loadUrl =  (url) => {this._ngZone.run(() => this.loadUrl(url))};
-    /* Aggiungo il path alla homepage */
-    this.linkList = [
-      {link: '', label: 'Home Page'}
-    ];
+  }
+
+  private init() {
+    this.inSession = false;
+    this.sidenavImg = 'https://d32dm0rphc51dk.cloudfront.net/4owZe-GWerWuOzgkedPnPA/larger.jpg';
+    this.sidenavTitle = 'Home page';
+    this.exhibitionUrl = '';
+    this.differentPage = false;
+    this.linkList = [];
     this.scannedBeacons = [];
   }
 
-  addLink(link: Object) {
-    this.linkList.push(link);
+  private initSession() {
+    this.inSession = true;
+    this.sidenavImg = this._globalService.getExhibition().imgUrl;
+    this.sidenavTitle = this._globalService.getExhibition().title;
+    this.exhibitionUrl = 'exhibition';
   }
 
-  updateSidenav(data: any) {
-    const newLink = {link: data.url, label: data.title};
-    const beaconId = data.type + '_' + data.title;
-    /* Per evitare i doppioni all'interno del menù di navigazione */
-    if (!this.scannedBeacons.includes(beaconId)) {
-      this.scannedBeacons.push(beaconId);
-      /* Non c'è uno switch, i link non dipendono dal tipo di contenuto, basta che non sia un'opera */
-      if (newLink.link !== 'artwork') {
-        this.addLink(newLink);
-      }
-    }
+  // addLink(link: Object) {
+  //   this.linkList.push(link);
+  // }
+
+  // updateSidenav(data: any) {
+  //   const newLink = {link: this.dialogUrl, label: data.title};
+  //   const beaconId = data.type + '_' + data.title;
+  //   /* Per evitare i doppioni all'interno del menù di navigazione */
+  //   if (!this.scannedBeacons.includes(beaconId)) {
+  //     this.scannedBeacons.push(beaconId);
+  //     if (data.type === 'rooms') {
+  //       this.addLink(newLink);
+  //       // è necessario ordinare i link in modo che siano sempre in ordine
+  //     }
+  //   }
+  // }
+
+  updateSidenav() {
+    this.linkList = [];
+    const rooms = this._globalService.getRooms();
+    rooms.sort((a, b) => b.id - a.id).forEach(room => {
+      this.linkList.push({link: 'room/' + room.id, label: room.title});
+    })
   }
 
-  getLinkList(): any {
+  getLinkList(): Array<any> {
     return this.linkList;
   }
 
@@ -114,11 +136,11 @@ export class AppComponent implements OnInit {
         res => data = res,
         err => console.error,
         () => {
-          // Se inizia la sessione setto la variabile
-          this.inSession = true;
           // Salvataggio dei dati del nuovo beacon (se è una stanza o un'opera)
           this.saveData(data);
-          this.updateSidenav({url: this.dialogUrl, title: data.title});
+          // Se inizia la sessione setto la variabile
+          this.initSession();
+          this.updateSidenav();
           this.setNavigationUrl(data);
           this.manageDialog(data);
         }
@@ -223,12 +245,7 @@ export class AppComponent implements OnInit {
   }
 
   closeSession() {
-    this.inSession = false;
-    this.differentPage = false;
-    this.linkList = [
-      {link: '', label: 'Home Page'}
-    ];
-    this.scannedBeacons = [];
+    this.init();
     this._globalService.clearData();
     this.dialogUrl = '';
   }
