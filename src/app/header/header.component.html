@@ -6,8 +6,9 @@
     <h1 style="margin-left:20px;">
       Naveum
     </h1>
-    <button *ngIf='artworkLoaded' class="square-button" (click)="goToCurrentPage()">
+    <!-- <button *ngIf='inSession' class="square-button" (click)="goToCurrentPage()">
       <img [src]="getImgUrl()"/>
-    </button>
+    </button> -->
+    <mat-icon style="margin-left:auto;" (click)="openSettings()">settings</mat-icon>
   </mat-toolbar>
 </header>

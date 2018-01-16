@@ -35,15 +35,16 @@ import { ShareDataService } from './services/share-data.service';
 import { GlobalService } from './services/global.service';
 import { WindowRefService } from './services/window-ref.service';
 import { OverButtonComponent } from './over-button/over-button.component';
+import { SettingsComponent } from './settings/settings.component';
 
 /* Routes predefinite dell'applicazione, a mano a mano che si scoprono nuove pagine è possibile
    ne verranno aggiunte altre alla configurazione del router */
 const appRoutes: Routes = [
   { path: '', component: MainComponent},
   { path: 'exhibition', component: InfoExhibitionComponent },
-  { path: 'museum', component: InfoMuseumComponent },
   { path: 'room/:id', component: InfoRoomComponent},
   { path: 'artwork/:id', component: InfoArtworkComponent },
+  { path: 'settings', component: SettingsComponent },
   { path: '**', component: PageNotFoundComponent}
 ];
 
@@ -61,7 +62,8 @@ const appRoutes: Routes = [
     DialogComponent,
     DialogExitComponent,
     OverButtonComponent,
-    DialogExitComponent
+    DialogExitComponent,
+    SettingsComponent
   ],
   entryComponents: [
     DialogComponent,

@@ -56,5 +56,16 @@ mat-sidenav-container {
   left: 0px;
   z-index: 2;
   width: 100%  !important;
-  box-shadow: 0 3px 2px #888888; 
+  box-shadow: 0 2px 2px #ccc; 
+}
+
+.sep-line {
+  width: 100%;
+  border-bottom: 1px solid #03a9f4;
+}
+
+.intro-text {
+  text-align: center;
+  padding: 10px;
+  font-size: 18px;
 }

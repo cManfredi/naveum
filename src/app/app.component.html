@@ -1,31 +1,42 @@
 <mat-sidenav-container #sidenav>
   <mat-sidenav mode="over" id="sidenav-menu">
-    <div class="sidenav-img-div">
-      <img class="sidenav-img" [src]=sidenavImg>
+    <div class="first-access-text" *ngIf="!inSession">
+      <h1 class="mat-h1" style="font-size:30px;font-weight:bold;text-align:center;padding-top:30px;">
+        Naveum
+      </h1>
+      <div class="sep-line"></div>
+      <p class="mat-body-1 intro-text">
+        Naveum è il tuo assistente personale capace di guidarti nella tua visita all'interno di un museo mediante
+        percorsi di navigazione ed informazioni.
+      </p>
     </div>
-    <mat-nav-list>
-      <a mat-list-item 
-        class="sidenav-ex-row"
-        routerLink="{{exhibitionUrl}}" 
-        routerLinkActive=true 
-        (click)="sidenav.close()">
-          <p>{{sidenavTitle}}</p>
-      </a>
-      <a mat-list-item 
-        *ngFor="let link of getLinkList()" 
-        [routerLink]="link.link" 
-        routerLinkActive=true 
-        (click)="sidenav.close()">
-          {{link.label}}
-      </a>
-      <a mat-list-item 
-        *ngIf="inSession"
-        routerLink="" 
-        routerLinkActive=true 
-        (click)="closeSession();sidenav.close()">
-          Close session
-      </a>
-    </mat-nav-list>
+    <div *ngIf="inSession">
+      <div class="sidenav-img-div">
+        <img class="sidenav-img" [src]=sidenavImg>
+      </div>
+      <mat-nav-list>
+        <a mat-list-item 
+          class="sidenav-ex-row"
+          routerLink="{{exhibitionUrl}}" 
+          routerLinkActive=true 
+          (click)="sidenav.close()">
+            <p>{{sidenavTitle}}</p>
+        </a>
+        <a mat-list-item 
+          *ngFor="let link of getLinkList()" 
+          [routerLink]="link.link" 
+          routerLinkActive=true 
+          (click)="sidenav.close()">
+            {{link.label}}
+        </a>
+        <a mat-list-item 
+          routerLink="" 
+          routerLinkActive=true 
+          (click)="closeSession();sidenav.close()">
+            Termina la visita
+        </a>
+      </mat-nav-list>
+    </div>
     <app-footer></app-footer>
   </mat-sidenav>
   <div class="app-container">

@@ -2,6 +2,8 @@ import {ShareDataService} from '../services/share-data.service';
 import {GlobalService} from '../services/global.service';
 import { MatSidenavModule } from '@angular/material';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,14 +11,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  artworkLoaded: boolean;
   @Output() btnClicked: EventEmitter<string> = new EventEmitter();
+  public inSettings;
 
-  constructor(private _globalService: GlobalService, private _shareService: ShareDataService) { }
+  constructor(private _globalService: GlobalService, private _router: Router, private _route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.artworkLoaded = false;
-    this._shareService.beaconLoad$.subscribe((data) => {this.changeButton(data)});
+    this.inSettings = false;
   }
 
   getImgUrl(): string {
@@ -27,12 +28,8 @@ export class HeaderComponent implements OnInit {
     this.btnClicked.emit('toggleSidenav');
   }
 
-  goToCurrentPage() {
-
-  }
-
-  changeButton(data: any) {
-
+  openSettings() {
+    this._router.navigate(['settings']);
   }
 
 }
