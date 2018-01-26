@@ -11,9 +11,9 @@ import { forEach } from '@angular/router/src/utils/collection';
   styleUrls: ['./info-room.component.scss']
 })
 export class InfoRoomComponent implements OnInit {
-  private name: string;
+  name: string;
   private imgUrl: string;
-  private description: string;
+  description: string;
   private svg: string;
   public artworks: Array<any>;
 
@@ -28,6 +28,7 @@ export class InfoRoomComponent implements OnInit {
     // this.refresh(initData);
     this._route.paramMap.subscribe((paramMap: ParamMap) => {
       const snapshot = this._route.snapshot;
+      this._globalService.managerRouting(snapshot.url[0].path);
       if (snapshot.url[0].path === 'room') {
         // Recupero l'id dell'opera da mostrare
         const id: number = Number.parseInt(paramMap.get('id'));

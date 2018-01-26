@@ -1,10 +1,31 @@
+<div class="mat-h2 title">
+    {{name}}
+</div>
 <mat-tab-group mat-stretch-tabs="yes">
-  <mat-tab label="Map">
-    <div class="svg-container" [inlineSVG]="getSvgUrl()" >
-
+  <mat-tab label="Info">
+    <div class="mat-body-1 text">
+      {{description}}
     </div>
   </mat-tab>
-  <mat-tab label="List">
+  <mat-tab label="Mappa">
+    <div class="svg-container" >
+      <!-- <svg width="100%" height="100%">
+        <circle 
+          *ngFor="let artwork of artworks"
+          cx="artwork.posX" cy="artwork.posY" r="10"
+          fill="black"
+            ></circle>
+      </svg> -->
+      <!-- <img [src]="getSvgUrl()" alt="" usemap="#Map" />
+      <map name="Map" id="Map">
+          <area alt="" title="" href="#" shape="rect" coords="664,983,753,1076" />
+          <area alt="" title="" href="#" shape="rect" coords="665,488,757,587" />
+          <area alt="" title="" href="#" shape="rect" coords="483,81,593,169" />
+          <area alt="" title="" href="#" shape="rect" coords="52,386,152,481" />
+      </map> -->
+    </div>
+  </mat-tab>
+  <mat-tab label="Lista">
     <mat-nav-list>
       <a 
         mat-list-item 

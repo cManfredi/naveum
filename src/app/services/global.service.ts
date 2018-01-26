@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as classes from '../classes';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class GlobalService {
@@ -11,8 +12,11 @@ export class GlobalService {
     artworks: Array<classes.Artwork>
   };
 
-  public currentPage = '';
-  public currentBeacon: any;
+  // Observable per aggiornare navbar e overbutton quando si naviga
+  private routerNavSource = new Subject<any>();
+  public routeNav$ = this.routerNavSource.asObservable();
+
+  public linkToCurrent: string;
 
   public currentRoom: number;
   public currentArtwork: number;
@@ -23,6 +27,7 @@ export class GlobalService {
   }
 
   private init(): void {
+    this.linkToCurrent = '';
     this.currentArtwork = 0;
     this.currentRoom = 0;
     this.data = {
@@ -89,6 +94,10 @@ export class GlobalService {
 
   clearData(): void {
     this.init();
+  }
+
+  managerRouting(data) {
+    this.routerNavSource.next(data);
   }
 
 }

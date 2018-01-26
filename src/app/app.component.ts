@@ -152,6 +152,7 @@ export class AppComponent implements OnInit {
   }
 
   saveData(data: any) {
+    console.log(data);
     switch (data.type) {
       case 'exhibition':
         const exhibition: classes.GenericJsonClass =
@@ -223,6 +224,7 @@ export class AppComponent implements OnInit {
 
   private setNavigationUrl(data: any) {
     this.dialogUrl = (data.type === 'exhibition') ? data.type : (data.type + '/' + data.id);
+    this._globalService.linkToCurrent = this.dialogUrl;
   }
 
   private manageDialog(data: any) {

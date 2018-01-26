@@ -12,16 +12,30 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   @Output() btnClicked: EventEmitter<string> = new EventEmitter();
-  public inSettings;
+  inSettings: boolean;
+  locName: string;
 
-  constructor(private _globalService: GlobalService, private _router: Router, private _route: ActivatedRoute) { }
+  constructor(private _globalService: GlobalService, private _router: Router) { }
 
   ngOnInit() {
     this.inSettings = false;
-  }
-
-  getImgUrl(): string {
-    return '';
+    this.locName = '';
+    this._globalService.routeNav$.subscribe( url => {
+      switch (url) {
+        case 'exhibition':
+          this.locName = 'Mostra';
+          break;
+        case 'room':
+          this.locName = 'Stanza';
+          break;
+        case 'artwork':
+          this.locName = 'Opera';
+          break;
+        case 'settings':
+          this.locName = 'Impostazioni';
+          break;
+      }
+    })
   }
 
   openSidenav() {

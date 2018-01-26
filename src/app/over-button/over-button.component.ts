@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalService } from 'app/services/global.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-over-button',
@@ -6,11 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./over-button.component.scss']
 })
 export class OverButtonComponent implements OnInit {
-  private link: string;
+  buttonLink: string;
 
-  constructor() { }
+  constructor(private _globalService: GlobalService, private _router: Router) { }
 
   ngOnInit() {
+    // this.buttonLink = '';
+    // this._globalService.routeNav$.subscribe( url => {
+    //   this.buttonLink = this._globalService.linkToCurrent;
+    // })
+  }
+
+  goToCurrentPage() {
+    this._router.navigate([this._globalService.linkToCurrent]);
   }
 
 }

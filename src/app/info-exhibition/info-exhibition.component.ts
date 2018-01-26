@@ -20,8 +20,11 @@ export class InfoExhibitionComponent implements OnInit {
     /* Sottoscrizione agli eventi che arrivano dal servizio condiviso */
     // this._sharedService.beaconLoad$.subscribe(bData => this.updatePage(bData));
     this._route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (this._route.snapshot.url[0].path === 'exhibition') {
-        this.updatePage(this._globalService.getExhibition());
+      const snapshot = this._route.snapshot;
+      this._globalService.managerRouting(snapshot.url[0].path);
+      if (snapshot.url[0].path === 'exhibition') {
+        const data = this._globalService.getExhibition();
+        this.updatePage(data);
       }
     });
     // const initData: any = this._globalService.currentBeacon;
