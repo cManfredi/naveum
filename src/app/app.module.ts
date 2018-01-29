@@ -36,6 +36,7 @@ import { GlobalService } from './services/global.service';
 import { WindowRefService } from './services/window-ref.service';
 import { OverButtonComponent } from './over-button/over-button.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ScrollTrackerDirective } from './scroll-tracker.directive';
 
 /* Routes predefinite dell'applicazione, a mano a mano che si scoprono nuove pagine è possibile
    ne verranno aggiunte altre alla configurazione del router */
@@ -63,7 +64,8 @@ const appRoutes: Routes = [
     DialogExitComponent,
     OverButtonComponent,
     DialogExitComponent,
-    SettingsComponent
+    SettingsComponent,
+    ScrollTrackerDirective
   ],
   entryComponents: [
     DialogComponent,

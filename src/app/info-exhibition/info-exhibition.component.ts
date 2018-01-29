@@ -21,7 +21,7 @@ export class InfoExhibitionComponent implements OnInit {
     // this._sharedService.beaconLoad$.subscribe(bData => this.updatePage(bData));
     this._route.paramMap.subscribe((paramMap: ParamMap) => {
       const snapshot = this._route.snapshot;
-      this._globalService.managerRouting(snapshot.url[0].path);
+      this._globalService.manageRouting(snapshot.url);
       if (snapshot.url[0].path === 'exhibition') {
         const data = this._globalService.getExhibition();
         this.updatePage(data);

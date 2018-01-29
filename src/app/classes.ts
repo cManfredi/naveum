@@ -77,23 +77,31 @@ export class Room extends GenericJsonClass {
 }
 
 export class Artwork extends GenericJsonClass {
-  private position: number;
-    public get $position(): number {
-      return this.position;
+  private _roomId: number;
+    public get roomId(): number {
+      return this._roomId;
     }
-    public set $position(value: number) {
-      this.position = value;
+    public set roomId(value: number) {
+      this._roomId = value;
     }
-  private audioUrl: string;
-    public get $audioUrl(): string {
-      return this.audioUrl;
+  private _position: number;
+    public get position(): number {
+      return this._position;
     }
-    public set $audioUrl(value: string) {
-      this.audioUrl = value;
+    public set position(value: number) {
+      this._position = value;
+    }
+  private _audioUrl: string;
+    public get audioUrl(): string {
+      return this._audioUrl;
+    }
+    public set audioUrl(value: string) {
+      this._audioUrl = value;
     }
 
-  constructor(id, type, title, desc, imgUrl, contStyle, position, audioUrl) {
+  constructor(id, type, title, desc, imgUrl, contStyle, roomId, position, audioUrl) {
     super(id, type, title, desc, imgUrl, contStyle);
+    this.roomId = roomId;
     this.position = position;
     this.audioUrl = audioUrl;
   }

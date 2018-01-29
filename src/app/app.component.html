@@ -29,6 +29,7 @@
           (click)="sidenav.close()">
             {{link.label}}
         </a>
+        <mat-divider></mat-divider>
         <a mat-list-item 
           routerLink="" 
           routerLinkActive=true 
@@ -39,12 +40,12 @@
     </div>
     <app-footer></app-footer>
   </mat-sidenav>
-  <div class="app-container">
+  <div appScrollTracker class="app-container">
     <app-header class="fixed-toolbar" (btnClicked)="sidenav.open()"></app-header> 
     <!-- Router outlet -->
     <main class="main-container">
-      <router-outlet></router-outlet>
+      <router-outlet ></router-outlet>
     </main>
   </div>
+  <app-over-button></app-over-button> 
 </mat-sidenav-container>
-<app-over-button *ngIf="differentPage"></app-over-button> 

@@ -14,14 +14,17 @@ export class HeaderComponent implements OnInit {
   @Output() btnClicked: EventEmitter<string> = new EventEmitter();
   inSettings: boolean;
   locName: string;
+  inArtwork: boolean;
 
   constructor(private _globalService: GlobalService, private _router: Router) { }
 
   ngOnInit() {
     this.inSettings = false;
+    this.inArtwork = false;
     this.locName = '';
     this._globalService.routeNav$.subscribe( url => {
-      switch (url) {
+      this.inArtwork = false;
+      switch (url[0].path) {
         case 'exhibition':
           this.locName = 'Mostra';
           break;
@@ -30,12 +33,19 @@ export class HeaderComponent implements OnInit {
           break;
         case 'artwork':
           this.locName = 'Opera';
+          this.inArtwork = true;
           break;
         case 'settings':
           this.locName = 'Impostazioni';
           break;
       }
     })
+  }
+
+  navToRoom() {
+    const artworkId = Number.parseInt(this._router.url.split('/')[2]);
+    const roomId = this._globalService.findArtwork(artworkId).roomId;
+    this._router.navigate(['room/' + roomId]);
   }
 
   openSidenav() {

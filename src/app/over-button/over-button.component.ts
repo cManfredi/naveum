@@ -8,19 +8,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./over-button.component.scss']
 })
 export class OverButtonComponent implements OnInit {
-  buttonLink: string;
+  differentPage: boolean;
 
   constructor(private _globalService: GlobalService, private _router: Router) { }
 
   ngOnInit() {
-    // this.buttonLink = '';
-    // this._globalService.routeNav$.subscribe( url => {
-    //   this.buttonLink = this._globalService.linkToCurrent;
-    // })
+    this.differentPage = false;
+    this._globalService.routeNav$.subscribe( url => {
+      let completeUrl = '';
+      url.forEach(element => {
+        completeUrl += '/' + element.path;
+      });
+      console.log(completeUrl);
+      console.log(this._globalService.linkToCurrent);
+      if (completeUrl !== '/' + this._globalService.linkToCurrent) {
+        this.differentPage = true;
+      }
+    })
   }
 
   goToCurrentPage() {
     this._router.navigate([this._globalService.linkToCurrent]);
+    this.differentPage = false;
   }
 
 }

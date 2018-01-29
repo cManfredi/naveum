@@ -1,7 +1,7 @@
 <div class="mat-h2 title">
     {{name}}
 </div>
-<mat-tab-group mat-stretch-tabs="yes">
+<mat-tab-group mat-stretch-tabs="yes" [(selectedIndex)]="selectedIndex" (selectedTabChange)='onTabSelect($event)'> 
   <mat-tab label="Info">
     <div class="mat-body-1 text">
       {{description}}

@@ -21,12 +21,16 @@ export class GlobalService {
   public currentRoom: number;
   public currentArtwork: number;
 
+  // Gestione tabs in room
+  lastTabSelected: number;
+
   constructor() {
     this.lang = 'en';
     this.init();
   }
 
   private init(): void {
+    this.lastTabSelected = 0;
     this.linkToCurrent = '';
     this.currentArtwork = 0;
     this.currentRoom = 0;
@@ -96,7 +100,7 @@ export class GlobalService {
     this.init();
   }
 
-  managerRouting(data) {
+  manageRouting(data) {
     this.routerNavSource.next(data);
   }
 
