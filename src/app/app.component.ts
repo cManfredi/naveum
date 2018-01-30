@@ -78,14 +78,13 @@ export class AppComponent implements OnInit {
     if (this.inSession === false) {
       // Mi aspetto che l'url sia dell'esibizione così da caricare i dati
       if (resource === 'exhibitions') {
-        /* Recupero dall'url l'indirizzo del db per costruire altre query */
-        this._jsonService.setDbUrl(urlComponents[0] + '//' + urlComponents[2]);
         /* Recupero i dati dal db */
-        this._jsonService.getJsonData(url)
+        this._jsonService.getExhibitionData(id)
         .subscribe(
-          res => data = res,
+          res => data = res[0],
           err => console.error,
           () => {
+            console.log(data);
             // Salvataggio dei dati del nuovo beacon (se è una stanza o un'opera)
             this.saveDataV2(data);
             // Se inizia la sessione setto la variabile

@@ -4,21 +4,14 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class JsonFetchService {
-
-  private dbUrl: string;
+  private baseUrl = 'https://api.mlab.com/api/1/databases/naveum/collections/';
+  private apiKey = 'DwBVhA_VKdogGizIA37mM04uK8IZlR3Q';
 
   constructor(private http: Http) { }
 
-  getJsonData(url: string) {
+  getExhibitionData(collectionId: number) {
+    const url = this.baseUrl + '/exhibitions?q={id:' + collectionId + '}&apiKey=' + this.apiKey;
     return this.http.get(url).map(res => res.json());
-  }
-
-  public getDbUrl(): string {
-    return this.dbUrl;
-  }
-
-  public setDbUrl(dbUrl): void {
-    this.dbUrl = dbUrl;
   }
 
 }
