@@ -19,8 +19,6 @@ export class OverButtonComponent implements OnInit {
       url.forEach(element => {
         completeUrl += '/' + element.path;
       });
-      console.log(completeUrl);
-      console.log(this._globalService.linkToCurrent);
       if (completeUrl !== '/' + this._globalService.linkToCurrent) {
         this.differentPage = true;
       }

@@ -84,7 +84,6 @@ export class AppComponent implements OnInit {
           res => data = res[0],
           err => console.error,
           () => {
-            console.log(data);
             // Salvataggio dei dati del nuovo beacon (se è una stanza o un'opera)
             this.saveDataV2(data);
             // Se inizia la sessione setto la variabile
