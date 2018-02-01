@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.init();
     /* Aggiungo la reference globale usando il servizio wrapper creato */
-    this.windowRef.window.loadUrl =  (url) => {this._ngZone.run(() => this.loadUrlV2(url))};
+    this.windowRef.window.loadUrl =  (url) => {this._ngZone.run(() => this.loadUrl(url))};
   }
 
   private init() {
@@ -85,7 +85,7 @@ export class AppComponent implements OnInit {
           err => console.error,
           () => {
             // Salvataggio dei dati del nuovo beacon (se è una stanza o un'opera)
-            this.saveDataV2(data);
+            this.saveData(data);
             // Se inizia la sessione setto la variabile
             this.initSession();
             this.updateSidenav();
@@ -113,14 +113,14 @@ export class AppComponent implements OnInit {
                 if (result === 'ok') {
                   // chiudo la sessione
                   this.closeSession();
-                  this.loadUrlV2(url);
+                  this.loadUrl(url);
                 }
               });
             }
           } else {
             // per qualche motivo sono in sessione ma non è stata caricata la visita, chiudo e ricarico
             this.closeSession();
-            this.loadUrlV2(url);
+            this.loadUrl(url);
           }
           break;
         case 'rooms':
