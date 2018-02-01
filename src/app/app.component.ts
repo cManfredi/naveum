@@ -68,7 +68,7 @@ export class AppComponent implements OnInit {
     return this.linkList;
   }
 
-  loadUrlV2(url: string) {
+  loadUrl(url: string) {
     // Se il link è di una esibizione, effettuo il caricamento di tutti i dati associati
     const urlComponents: string[] = url.split('/');
     const resource = urlComponents[3];
@@ -209,7 +209,7 @@ export class AppComponent implements OnInit {
   //   }
   // }
 
-  saveDataV2(data: any) {
+  saveData(data: any) {
     const exhibition: classes.GenericJsonClass =
       new classes.GenericJsonClass(
         data.id,
