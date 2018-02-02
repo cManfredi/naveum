@@ -361,7 +361,7 @@ export class AppComponent implements OnInit {
   private manageRouting(result: any) {
     if (result === 'change') {
       this._router.navigate([this.dialogUrl]);
-    } else if (result === 'remain') {
+    } else {
       const paths = this._router.url.split('/');
       paths.splice(0, 1);
       const url = [];
