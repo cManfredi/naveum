@@ -73,6 +73,16 @@ export class AppComponent implements OnInit {
     const urlComponents: string[] = url.split('/');
     const resource = urlComponents[3];
     const id = Number.parseInt(urlComponents[4]);
+    if (resource === 'exhibitions') {
+      if (this._globalService.linkToCurrent === 'exhibition') {
+        return;
+      }
+    } else {
+      const temp = resource.substring(0, resource.length - 1);
+      if (temp + '/' + id === this._globalService.linkToCurrent) {
+        return;
+      }
+    }
     let data: any;
     // Controllo se siamo in una visita
     if (this.inSession === false) {
