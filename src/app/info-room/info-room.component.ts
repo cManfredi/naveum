@@ -42,7 +42,7 @@ export class InfoRoomComponent implements OnInit {
 
   refresh(bData: any) {
     this.name = bData.title;
-    this.svg = bData.svgUrl;
+    this.svg = bData.imgUrl;
     this.description = bData.description;
     bData.artworks.forEach(element => {
       const artwork = this._globalService.findArtwork(element);

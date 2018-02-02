@@ -7,8 +7,8 @@
       {{description}}
     </div>
   </mat-tab>
-  <!-- <mat-tab label="Mappa">
-    <div class="svg-container" > -->
+  <mat-tab label="Mappa">
+    <div style="display:flex;justify-content:center;">
       <!-- <svg width="100%" height="100%">
         <circle 
           *ngFor="let artwork of artworks"
@@ -16,15 +16,15 @@
           fill="black"
             ></circle>
       </svg> -->
-      <!-- <img [src]="getSvgUrl()" alt="" usemap="#Map" />
-      <map name="Map" id="Map">
+      <img class="svg-container" [src]="getSvgUrl()" alt="" usemap="#Map" style="margin-left:20px;"/>
+      <!-- <map name="Map" id="Map">
           <area alt="" title="" href="#" shape="rect" coords="664,983,753,1076" />
           <area alt="" title="" href="#" shape="rect" coords="665,488,757,587" />
           <area alt="" title="" href="#" shape="rect" coords="483,81,593,169" />
           <area alt="" title="" href="#" shape="rect" coords="52,386,152,481" />
       </map> -->
-    <!-- </div>
-  </mat-tab> -->
+    </div>
+  </mat-tab>
   <mat-tab label="Lista">
     <mat-nav-list>
       <a 
