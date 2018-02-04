@@ -8,21 +8,17 @@
     </div>
   </mat-tab>
   <mat-tab label="Mappa">
-    <div style="display:flex;justify-content:center;">
-      <!-- <svg width="100%" height="100%">
-        <circle 
-          *ngFor="let artwork of artworks"
-          cx="artwork.posX" cy="artwork.posY" r="10"
-          fill="black"
-            ></circle>
-      </svg> -->
-      <img class="svg-container" [src]="getSvgUrl()" alt="" usemap="#Map" style="margin-left:20px;"/>
-      <!-- <map name="Map" id="Map">
-          <area alt="" title="" href="#" shape="rect" coords="664,983,753,1076" />
-          <area alt="" title="" href="#" shape="rect" coords="665,488,757,587" />
-          <area alt="" title="" href="#" shape="rect" coords="483,81,593,169" />
-          <area alt="" title="" href="#" shape="rect" coords="52,386,152,481" />
-      </map> -->
+    <div class="svg-container">
+      <svg height="100%" width="100%" viewBox="-0.382979 0 900.766 1440" preserveAspectRatio="xMidYMid meet"  >
+        <rect x="44.00001168823246" y="71.99998065185548" style="fill:white;stroke:black;stroke-width:1px;" id="e1_rectangle" width="720" height="1280" ry="0"  rx="0"/>
+        <circle (click)="manageRouting(1)" id="pos1" cx="464.07423431214085" cy="568.5017889108256" style="fill:black;stroke:black;stroke-width:1px;" r="15.2971" transform="matrix(2.5 0 0 2.5 -452.537 -394.097)"/>
+        <circle (click)="manageRouting(2)" id="pos2" cx="465.29978507989125" cy="372.41624799804686" style="fill:black;stroke:black;stroke-width:1px;" r="15.2971" transform="matrix(2.5 0 0 2.5 -452.537 -394.097)"/>
+        <circle (click)="manageRouting(3)" id="pos3" cx="395.4440797441199" cy="208.19458334181766" style="fill:black;stroke:black;stroke-width:1px;" r="15.2971" transform="matrix(2.5 0 0 2.5 -452.537 -394.097)"/>
+        <circle (click)="manageRouting(4)" id="pos4" cx="221.41823196735803" cy="329.52203329143117" style="fill:black;stroke:black;stroke-width:1px;" r="15.2971" transform="matrix(2.5 0 0 2.5 -452.537 -394.097)"/>
+        <path id="entrance" d="M-228.3504457167281,7.937907741021117h2l-4,-4l-4,4h2v4h4Z" style="fill:black; stroke:black; vector-effect:non-scaling-stroke;stroke-width:1px;" transform="matrix(9.97397 0.0734833 -0.0734833 9.97397 2581.49 1230.12)"/>
+        <path id="exit" d="M-197.44897417508963,-50.00156785882305h2l-4,-4l-4,4h2v4h4Z" style="fill:black; stroke:black; vector-effect:non-scaling-stroke;stroke-width:1px;" transform="matrix(0.157367 -9.973 9.973 0.157367 629.636 -1021.37)"/>
+        <path id="path" d="M246.703,1225.479l67.40400000000002,0l0,-134.808l337.0217589254176,-0.001195618974406898l0.00024107458239086554,-906.8938043810256l-468.76700000000005,0l-3.064274990944284,747.5746170212766l-27.574057807455603,0.00046808510649043455l0.000776338283003497,58.21355072378594l94.98000449875576,0.00036074991453460825l3.06246212540276,-735.3205580730037l340.08508983595834,-0.00043850707993442484l0.00025579054761237785,781.2778932066575l-340.08637671677604,-0.00009512134329270339l0.0011209262284239685,189.9572019146858Z" style="fill:none;stroke:black;stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;"/>
+      </svg>
     </div>
   </mat-tab>
   <mat-tab label="Lista">
@@ -30,7 +26,7 @@
       <a 
         mat-list-item 
         *ngFor="let artwork of artworks"
-        (click)="manageRouting(artwork.link)">
+        (click)="manageRouting(artwork.id)">
           {{artwork.title}}
       </a>
     </mat-nav-list>

@@ -46,7 +46,7 @@ export class InfoRoomComponent implements OnInit {
     this.description = bData.description;
     bData.artworks.forEach(element => {
       const artwork = this._globalService.findArtwork(element);
-      this.artworks.push({id: artwork.id, title: artwork.title, link: '/artwork/' + artwork.id});
+      this.artworks.push({id: artwork.id, title: artwork.title});
     });
     this.artworks.sort((a, b) => a.id - b.id);
     this.selectedIndex = this._globalService.lastTabSelected;
@@ -56,8 +56,8 @@ export class InfoRoomComponent implements OnInit {
     return this.svg;
   }
 
-  manageRouting(url: string) {
-    this._router.navigate([url]);
+  manageRouting(id: string) {
+    this._router.navigate(['/artwork/' + id]);
   }
 
   onTabSelect(event) {
