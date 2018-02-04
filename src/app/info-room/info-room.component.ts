@@ -56,7 +56,7 @@ export class InfoRoomComponent implements OnInit {
     return this.svg;
   }
 
-  manageRouting(id: string) {
+  manageRouting(id: any) {
     this._router.navigate(['/artwork/' + id]);
   }
 
